@@ -13,7 +13,8 @@ export const AppStyle = StyleSheet.create({
     },
     avatar: {
         width: 32,
-        height: 32
+        height: 32,
+        borderRadius: 1000,
     },
     border: {
         borderWidth: 0.5,
@@ -40,6 +41,23 @@ export const AppStyle = StyleSheet.create({
     column: {
         flexDirection: 'column',
         alignItems: 'flex-start',
+    },
+    header: {
+        backgroundColor: COLOR.header,
+        width: '100%',
+        height: "13%",
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 20,
+
+        shadowColor: "#000000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.18,
+        shadowRadius: 4.59,
+        elevation: 5
     }
+
 
 })

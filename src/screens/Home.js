@@ -1,11 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { AppStyle } from '../constants/AppStyle'
+import AppHeader from '../components/AppHeader'
 
 const Home = () => {
   return (
-    <View>
-      <Text>Home</Text>
-    </View>
+    <SafeAreaView style={AppStyle.container}>
+      <AppHeader />
+    </SafeAreaView>
   )
 }
 

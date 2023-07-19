@@ -130,7 +130,6 @@ const BottomTabNav = () => {
     // const { isLogin, infoUser } = useContext(AppContext);
     // console.log("isLogin Bottom Tabs=================>", isLogin);
     // console.log("infoUser Bottom Tabs=========>", infoUser);
-
     return (
         <>
             {
