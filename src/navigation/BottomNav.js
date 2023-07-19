@@ -137,7 +137,7 @@ const BottomTabNav = () => {
             }
         </>)
 }
-
+//luacs 
 export default BottomTabNav
 
 const styles = StyleSheet.create({})
