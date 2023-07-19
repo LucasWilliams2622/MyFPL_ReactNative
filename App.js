@@ -12,5 +12,4 @@ const App = () => {
     </AppContextProvider>
   )
 }
-// hungtq đẫ test
 export default App

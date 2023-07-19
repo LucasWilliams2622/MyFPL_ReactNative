@@ -126,7 +126,7 @@ const Main = () => {
     )
 }
 const BottomTabNav = () => {
-    const [isLogin, setfirst] = useState(false)
+    const [isLogin, setfirst] = useState(true)
     // const { isLogin, infoUser } = useContext(AppContext);
     // console.log("isLogin Bottom Tabs=================>", isLogin);
     // console.log("infoUser Bottom Tabs=========>", infoUser);

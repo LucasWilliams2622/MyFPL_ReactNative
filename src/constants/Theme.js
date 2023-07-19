@@ -12,6 +12,7 @@ export const COLOR = {
     titleWhite: "#ffffff",
     titlePrimary: "#f26f25",
     text: "#5B5959",
+    normalText:"#000",
 
     header: "#f26f25",
     border: "#5B5959",
