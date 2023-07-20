@@ -6,7 +6,7 @@ import { ICON, COLOR } from '../constants/Theme'
 import * as Animatable from 'react-native-animatable';
 import Login from '../screens/Login';
 import Home from '../screens/Home';
-import Notification from '../screens/Notification';
+import News from '../screens/News';
 import Profile from '../screens/Profile';
 import Schedule from '../screens/Schedule';
 
@@ -38,8 +38,8 @@ const StackProfile = () => {
 }
 const StackNotification = () => {
     return (
-        <Stack.Navigator initialRouteName="Notification" screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Notification" component={Notification} />
+        <Stack.Navigator initialRouteName="News" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="News" component={News} />
 
         </Stack.Navigator>
     )
