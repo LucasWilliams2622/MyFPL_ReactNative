@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 import { COLOR } from "./Theme";
 
+
 export const AppStyle = StyleSheet.create({
     container: {
         flex: 1,
@@ -12,8 +13,8 @@ export const AppStyle = StyleSheet.create({
         height: 24
     },
     avatar: {
-        width: 32,
-        height: 32,
+        width: 42,
+        height: 42,
         borderRadius: 1000,
     },
     border: {
@@ -45,9 +46,9 @@ export const AppStyle = StyleSheet.create({
     header: {
         backgroundColor: COLOR.header,
         width: '100%',
-        height: "13%",
-        borderBottomLeftRadius: 20,
-        borderBottomRightRadius: 20,
+        height: "15%",
+        // borderBottomLeftRadius: 20,
+        // borderBottomRightRadius: 20,
 
         shadowColor: "#000000",
         shadowOffset: {
