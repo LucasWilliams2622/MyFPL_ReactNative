@@ -14,7 +14,7 @@ export const COLOR = {
     text: "#5B5959",
     normalText:"#000",
 
-    header: "#f26f25",
+    header: "#EAD3BE",
     border: "#5B5959",
     focus: "#f26f25",
     notFocus: "#000000",
