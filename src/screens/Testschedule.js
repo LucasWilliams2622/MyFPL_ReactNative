@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-
+import ItemTextSches from '../components/ItemTextSches'
 const Textscheule = () => {
   return (
     <View>
-      <Text>Textscheule</Text>
+      <ItemTextSches/>
     </View>
   )
 }
