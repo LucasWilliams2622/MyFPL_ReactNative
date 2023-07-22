@@ -17,6 +17,8 @@ const StackBegin = () => {
     return (
         <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="BottomNav" component={BottomTabNav} />
+
         </Stack.Navigator>
     )
 }
@@ -36,7 +38,7 @@ const StackProfile = () => {
         </Stack.Navigator>
     )
 }
-const StackNotification = () => {
+const StackNews = () => {
     return (
         <Stack.Navigator initialRouteName="News" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="News" component={News} />
@@ -66,7 +68,7 @@ const Main = () => {
                         } else if (route.name === 'StackSchedule') {
                             iconName = focused ? ICON.ScheduleFocus : ICON.Schedule;
                             label = 'Lịch'
-                        } else if (route.name === 'StackNotification') {
+                        } else if (route.name === 'StackNews') {
                             iconName = focused ? ICON.NotificationFocus : ICON.Notification;
                             label = 'Tin tức'
                         }
@@ -87,8 +89,8 @@ const Main = () => {
                                 duration={2000}>
                                 <Image source={iconName}
                                     style={{
-                                        width: focused ? 30 : 24,
-                                        height: focused ? 30 : 24,
+                                        width: focused ? 28 : 24,
+                                        height: focused ? 28 : 24,
 
                                         resizeMode: 'stretch',
                                         tintColor: focused ? COLOR.focus : COLOR.notFocus,
@@ -96,6 +98,7 @@ const Main = () => {
                             </Animatable.View>
                             <Text style={{
                                 fontSize: focused ? 10 : 0,
+                                fontWeight: focused ?"600":"100",
                                 marginTop: 4,
                                 color: focused ? COLOR.focus : COLOR.notFocus,
 
@@ -120,7 +123,7 @@ const Main = () => {
         >
             <Tab.Screen name="StackHome" component={StackHome} />
             <Tab.Screen name="StackSchedule" component={StackSchedule} />
-            <Tab.Screen name="StackNotification" component={StackNotification} />
+            <Tab.Screen name="StackNews" component={StackNews} />
             <Tab.Screen name="StackProfile" component={StackProfile} />
         </Tab.Navigator>
     )

@@ -1,10 +1,9 @@
-import { SafeAreaView, StyleSheet, Text, Image, View } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, Image, View, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { COLOR } from '../constants/Theme'
 import LinearGradient from 'react-native-linear-gradient';
 import { AppStyle } from '../constants/AppStyle';
 import { Dropdown } from 'react-native-element-dropdown';
-
 const dataLocation = [
   { labelLocation: 'Cơ sở Hồ Chí Minh', valueLocation: '1' },
   { labelLocation: 'Cơ sở Hà Nội', valueLocation: '2' },
@@ -54,14 +53,14 @@ const Login = () => {
             }}
           />
         </View>
-        <View style={[AppStyle.border, { marginHorizontal: 16 }]}>
+        <TouchableOpacity style={[AppStyle.border, { marginHorizontal: 16 }]} >
           <View style={[AppStyle.row, { alignItems: 'center', paddingVertical: 14, paddingHorizontal: 16 }]}>
             <Image style={[AppStyle.icon, { marginRight: 15 }]} source={require('../assets/icons/Google.png')} />
             <Text style={AppStyle.text}>Đăng nhập bằng Google</Text>
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
-      <Image  style={{bottom:0 ,width:130,height:40,alignSelf:'center'}}source={require('../assets/images/logo.jpg')}/>
+      <Image style={{ bottom: 0, width: 130, height: 40, alignSelf: 'center' }} source={require('../assets/images/logo.jpg')} />
     </SafeAreaView>
   )
 }

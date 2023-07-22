@@ -12,9 +12,17 @@ export const AppStyle = StyleSheet.create({
         width: 24,
         height: 24
     },
+    iconSmall: {
+        width: 12,
+        height: 12,
+    },
+    iconMedium: {
+        width: 16,
+        height: 16,
+    },
     avatar: {
-        width: 42,
-        height: 42,
+        width: 50,
+        height: 50,
         borderRadius: 1000,
     },
     border: {
@@ -22,15 +30,27 @@ export const AppStyle = StyleSheet.create({
         borderColor: COLOR.border,
         borderRadius: 10,
     },
-    title: {
-        fontSize: 20,
+    titleBig: {
+        fontSize: 18,
+        fontWeight: "700",
+        fontStyle: 'normal',
+        color: COLOR.titlePrimary,
+    },
+    titleMedium: {
+        fontSize: 14,
+        fontWeight: "700",
+        fontStyle: 'normal',
+        color: COLOR.titlePrimary,
+    },
+    titleSmall: {
+        fontSize: 12,
         fontWeight: "700",
         fontStyle: 'normal',
         color: COLOR.titlePrimary,
     },
     text: {
-        color: COLOR.normalText,
-        fontSize: 14,
+        color: COLOR.text,
+        fontSize: 10,
         fontWeight: '400',
         fontStyle: 'normal',
 
@@ -43,13 +63,41 @@ export const AppStyle = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'flex-start',
     },
+    center: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     header: {
-        backgroundColor: COLOR.header,
-        width: '100%',
-        height: "15%",
-        // borderBottomLeftRadius: 20,
-        // borderBottomRightRadius: 20,
-
+        width: "102%",
+        height: 90,
+        top: -10,
+        right: 2,
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 20,
+        shadowColor: "#000000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.17,
+        shadowRadius: 2.54,
+        elevation: 3
+    },
+    boxShadow: {
+        shadowColor: "#000000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.18,
+        shadowRadius: 4.59,
+        elevation: 5
+    },
+    item: {
+        borderRadius: 8,
+        backgroundColor: COLOR.background,
+        paddingVertical: 12,
+        paddingHorizontal: 10,
         shadowColor: "#000000",
         shadowOffset: {
             width: 0,

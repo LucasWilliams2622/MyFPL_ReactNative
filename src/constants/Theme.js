@@ -1,27 +1,36 @@
 
 
 export const COLOR = {
-    primary: "#f26f25",
+    primary: "#FF7324",
     secondary: "#ffffff",
-    tertiary: "#0066b1",
-    quaternary: "#0eb04b",
+
 
     background: "#ffffff",
-    titleBlack: "#000000",
-    titleGray: "#5B5959",
-    titleWhite: "#ffffff",
-    titlePrimary: "#f26f25",
-    text: "#5B5959",
-    normalText:"#000",
+    background2: "#fff1ce",
+    background3: "#FFEBB7",
+    background4: "#ABEBFF",
 
-    header: "#EAD3BE",
+    bgHeader:"#ffffff",
+    bgItemSchedule:"#ffffff",
+    bgItemNews:"#ffffff",
+    bgItemNews2:"#F2F9FF",
+    bgItemNews3:"#F7FFDF",
+    bgItemNews4:"#FFF1F1",
+
+    title: "#161719",
+    titlePrimary: "#FF7324",
+    titleNews: "#161719",
+    titleDistraction: "#6D6D6D",
+    text: "#757575",
+    normalText: "#848484",
+
     border: "#5B5959",
     focus: "#f26f25",
     notFocus: "#000000",
     bgButton: "#f26f25",
 
-    white:"#ffffff",
-    black:"#000000",
+    white: "#ffffff",
+    black: "#000000",
 
 
 }
@@ -47,7 +56,7 @@ export const ICON = {
     NotificationFocus: require('../assets/icons/ic_notification_focus.png'),
     ProfileFocus: require('../assets/icons/ic_user_focus.png'),
 
- 
+
 
 
 }

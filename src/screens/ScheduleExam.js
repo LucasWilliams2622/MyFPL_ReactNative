@@ -1,52 +1,35 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, SafeAreaView } from 'react-native'
 import React from 'react'
 
-const ItemSches = () => {
+const ItemTextSches = () => {
   return (
-    <View>
-      <Text>ItemSches</Text>
-
-      <View style={styles.body}><Text style={styles.txt1}>Lich Hoc</Text></View>
-      <View style={styles.body2} ><Text style={styles.txt2}>Lich Thi</Text></View>
-
-      <View style={styles.body3} ><Text style={styles.txt3}  >7 ngay toi </Text></View>
-      <View style={styles.body4}>
-        <View style={styles.body5}></View>
-        <View style={styles.body6}></View>
-
-        <Text style={styles.txtt4}> Lap trinh game 2D nang cao</Text>
-        <Text style={styles.txtt5}> 2023-07-20    .    15h15--17h15</Text>
-        <Text style={styles.txtt6}> Lop : cp17311</Text>
-        <Text style={styles.txtt7}> phong : T311 </Text>
-        <Text style={styles.txtt8}> ca : 4</Text>
-        <View></View>
-        <Text style={styles.txtt9}>DinNT14</Text>
-        <Text style={styles.txtt10}>Mob306</Text>
+    <SafeAreaView style={{}}>
 
 
 
-      </View>
-    </View>
+
+    </SafeAreaView>
   )
 }
 
-export default ItemSches
+
+export default ItemTextSches
+
 
 const styles = StyleSheet.create({
 
   body: {
     position: "absolute",
-    top: 120,
-    left: 20,
 
-    backgroundColor: "#F26F25",
+    left: 20,
+    backgroundColor: "#FFF",
     height: 50,
     width: 160,
     borderRadius: 50
   },
   body2: {
     position: "absolute",
-    top: 120,
+
     right: 20,
 
     backgroundColor: "#FFF",
@@ -55,7 +38,7 @@ const styles = StyleSheet.create({
     borderRadius: 50
   },
   txt1: {
-    color: 'white',
+    color: ' #F26F25',
     position: "absolute",
     fontSize: 20,
     fontWeight: 'bold',
@@ -64,7 +47,7 @@ const styles = StyleSheet.create({
 
   },
   txt2: {
-    color: '#F26F25',
+    color: 'white',
     position: "absolute",
     fontSize: 20,
     fontWeight: 'bold',
@@ -72,11 +55,9 @@ const styles = StyleSheet.create({
     bottom: 12
   },
   body3: {
-    margin: '45%',
-    backgroundColor: "#FFFF",
+    backgroundColor: "#F26F25",
     height: 40,
-    width: 360,
-    right: 160,
+    width: "100%",
     borderRadius: 50,
 
   },
@@ -87,7 +68,7 @@ const styles = StyleSheet.create({
   },
   body4: {
     position: "absolute",
-    marginTop: '65%',
+    marginTop: '15%',
     backgroundColor: "#FFFF",
     width: 360,
     height: 120,
@@ -120,10 +101,6 @@ const styles = StyleSheet.create({
     color: '#000',
     bottom: 100,
     left: 20
-
-
-
-
 
   },
   txtt5: {
