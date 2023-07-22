@@ -68,7 +68,7 @@ const Main = () => {
                             label = 'Lịch'
                         } else if (route.name === 'StackNotification') {
                             iconName = focused ? ICON.NotificationFocus : ICON.Notification;
-                            label = 'Thông báo'
+                            label = 'Tin tức'
                         }
                         else if (route.name === 'StackProfile') {
                             iconName = focused ? ICON.ProfileFocus : ICON.Profile;
