@@ -85,7 +85,7 @@ const ItemTextSches = (props) => {
           /> */}
           <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: '100%' }}>
             {DataScheduleToday.slice(0, Math.ceil(DataScheduleToday.length)).map((item) => (
-              <ItemSchedule data={item} key={item.id}/>
+              <ItemScheduleStudy data={item} key={item.id}/>
             ))}
           </View>
         </ScrollView>

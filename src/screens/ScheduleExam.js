@@ -4,8 +4,7 @@ import { AppStyle } from '../constants/AppStyle'
 import { Dropdown } from 'react-native-element-dropdown'
 import ItemScheduleExam from '../components/Schedule/ItemScheduleExam';
 import { COLOR } from '../constants/Theme';
-
-
+import ItemSchedule from '../components/Schedule/ItemScheduleExam';
 
 const data = [
   { label: '3 ngày tới', value: '1' },
@@ -43,7 +42,6 @@ const DataScheduleToday = [
 const ItemTextSches = () => {
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
-
 
   const renderItem = item => {
     return (
