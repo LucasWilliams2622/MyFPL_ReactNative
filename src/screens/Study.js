@@ -29,9 +29,13 @@ const DataNewsStudy = [
 const Study = () => {
   return (
     <SafeAreaView style={styles.BoxContent} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
-      <ScrollView showsVerticalScrollIndicator={false} style={{ width: "100%", marginBottom: 70 }}>
-        <View style={[AppStyle.column,]}>
-          <View style={[AppStyle.column,]}>
+      
+
+      <ScrollView showsVerticalScrollIndicator={false} style={{width:"100%"}}>
+      
+
+        <View style={[AppStyle.column, ]}>
+          <View style={[AppStyle.column, ]}>
             <Text style={AppStyle.titleBig}> Tin mới nhất </Text>
             <Image style={[AppStyle.iconMedium, { position: "absolute", left: 110, bottom: 2 }]} source={require('../assets/icons/ic_new.png')} />
 
