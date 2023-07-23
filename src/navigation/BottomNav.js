@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View, Image, } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState ,useContext} from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { ICON, COLOR } from '../constants/Theme'
 import * as Animatable from 'react-native-animatable';
+import { AppContext } from "../utils/AppContext";
 import Login from '../screens/Login';
 import Home from '../screens/Home';
 import News from '../screens/News';
@@ -129,8 +130,8 @@ const Main = () => {
     )
 }
 const BottomTabNav = () => {
-    const [isLogin, setfirst] = useState(true)
-    // const { isLogin, infoUser } = useContext(AppContext);
+    // const [isLogin, setfirst] = useState(true)
+    const { isLogin, infoUser } = useContext(AppContext);
     // console.log("isLogin Bottom Tabs=================>", isLogin);
     // console.log("infoUser Bottom Tabs=========>", infoUser);
     return (

@@ -1,9 +1,13 @@
-import { SafeAreaView, StyleSheet, Text, Image, View, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import { SafeAreaView, StyleSheet, Text, Image, View, TouchableOpacity, ToastAndroid } from 'react-native'
+import React, { useState, useEffect, useContext } from 'react'
 import { COLOR } from '../constants/Theme'
 import LinearGradient from 'react-native-linear-gradient';
 import { AppStyle } from '../constants/AppStyle';
 import { Dropdown } from 'react-native-element-dropdown';
+import AxiosInstance from '../constants/AxiosInstance';
+import { AppContext } from '../utils/AppContext';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+
 const dataLocation = [
   { labelLocation: 'Cơ sở Hồ Chí Minh', valueLocation: '1' },
   { labelLocation: 'Cơ sở Hà Nội', valueLocation: '2' },
@@ -14,7 +18,58 @@ const dataLocation = [
 const Login = () => {
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
+  const { isLogin, setIsLogin, setInfoUser, setIdUser } = useContext(AppContext);
+  useEffect(() => {
+    GoogleSignin.configure({ webClientId: 'AIzaSyABcfD8ASqFwnRAcHR2_wD_DYWfOa4h_24' });
+  }, [])
+  const signInGoogle = async () => {
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      console.log("aaaaaaaaaaaaaaaaaaa");
 
+      const email = userInfo.user.email;
+      const name = userInfo.user.name;
+      const avatar = userInfo.user.photo;
+      console.log('Id: ', userInfo.user.id);
+      console.log('Email: ', userInfo.user.email);
+      console.log('Name: ', userInfo.user.name);
+      console.log('FamilyName: ', userInfo.user.familyName);
+      console.log('GivenName: ', userInfo.user.givenName);
+      console.log('Photo: ', userInfo.user.photo);
+      try {
+        const response = await AxiosInstance().post("user/api/loginGoogle",
+          { email: email, name: name, avatar: avatar });
+        // console.log("SIGN IN GOOGLE========>",response);
+        if (response.result) {
+          console.log(" SIGN IN GOOGLE========>", response);
+          setIdUser(response.user._id)
+          setIsLogin(true)
+          setInfoUser(response.user)
+          // console.log("SIGN UP & SIGN IN GOOGLE SUCCESS!");
+          ToastAndroid.show("Đăng nhập thành công", ToastAndroid.SHORT);
+
+          // navigation.navigate("BottomTabs")
+        } else {
+          console.log("Tài khoản đã bị khóa");
+          ToastAndroid.show("Tài khoản đã bị khóa", ToastAndroid.SHORT);
+
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } catch (error) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        // user cancelled the login flow
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        // operation (e.g. sign in) is in progress already
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        // play services not available or outdated
+      } else {
+        // some other error happened
+      }
+    }
+  };
   const renderLabel = () => {
     if (value || isFocus) {
       return (
@@ -53,7 +108,7 @@ const Login = () => {
             }}
           />
         </View>
-        <TouchableOpacity style={[AppStyle.border, { marginHorizontal: 16 }]} >
+        <TouchableOpacity style={[AppStyle.border, { marginHorizontal: 16 }]} onPress={()=>{signInGoogle()}} >
           <View style={[AppStyle.row, { alignItems: 'center', paddingVertical: 14, paddingHorizontal: 16 }]}>
             <Image style={[AppStyle.icon, { marginRight: 15 }]} source={require('../assets/icons/Google.png')} />
             <Text style={AppStyle.text}>Đăng nhập bằng Google</Text>

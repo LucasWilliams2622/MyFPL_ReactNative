@@ -1,5 +1,5 @@
 #import "AppDelegate.h"
-
+#import <GoogleSignIn/GoogleSignIn.h>
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
@@ -54,6 +54,7 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  [GIDSignIn sharedInstance].clientID = @"YOUR_GOOGLE_CLIENT_ID";
   return YES;
 }
 
