@@ -7,7 +7,7 @@ const ItemNewsEnterprise = (props) => {
     const {data}= props;
     const {title,nameCompany,location} = data;
     return (
-        <TouchableOpacity style={[AppStyle.item, { height: 140, width: "48%", marginRight:8,marginBottom:6}]}>
+        <TouchableOpacity style={[AppStyle.item, { height: 140, width: "48%", marginRight:8,marginBottom:6,backgroundColor:"#F7FFDF"}]}>
             <Text style={[AppStyle.titleMedium, { color: COLOR.title }]} numberOfLines={1}>{title}</Text>
             <View style={[AppStyle.row, { marginTop: 8, justifyContent: 'space-between' }]}>
                 <Image style={{ width: 80, height: 68, borderRadius: 8, }} source={require('../../assets/images/green_field.jpg')} />
