@@ -5,7 +5,7 @@ import { AppStyle } from '../constants/AppStyle'
 import { COLOR } from '../constants/Theme'
 import AppHeader from '../components/AppHeader'
 import Activate from '../screens/Activate'
-import Study  from '../screens/Study'
+import Study from '../screens/Study'
 import Enterprise from '../screens/Enterprise'
 
 
@@ -27,43 +27,43 @@ const News = () => {
   ]);
   return (
     <SafeAreaView style={AppStyle.container}>
-      <AppHeader  style={{ height: "45%",}}/>
+      <AppHeader style={{ height: "45%", }} />
       <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}
         onIndexChange={setIndex}
         initialLayout={{ width: layout.width }}
-        renderTabBar = {
-          props => 
-          <TabBar {...props} 
-            renderLabel={({ route, color, focused }) => (
-              <Text style={{ fontSize:15,
-                  color: focused?'#F26F25':'#787878',
-                  fontWeight:"600",
-             
-                  borderRadius:8,
-                  paddingVertical:8,
-                  paddingHorizontal:20,
-              }}>
+        renderTabBar={
+          props =>
+            <TabBar {...props}
+              renderLabel={({ route, color, focused }) => (
+                <Text style={{
+                  fontSize: 15,
+                  color: focused ? '#F26F25' : '#787878',
+                  fontWeight: "600",
+                  borderRadius: 8,
+                  paddingVertical: 8,
+                  paddingHorizontal: 10,
+                }}>
                   {route.title}
-              </Text>
-            )}
-            // tabStyle={{width:'auto'}}
-            scrollEnabled={true}
-         
-            style={{backgroundColor:'white'}} 
-            indicatorStyle={ {
-              backgroundColor: '#F26F25',
-              width: "15%",
-              height: 3,
-              borderRadius: 40,
-              left:'9%',
-            }}
-          />
+                </Text>
+              )}
+              // tabStyle={{width:'auto'}}
+              scrollEnabled={true}
+
+              style={{ backgroundColor: 'white' }}
+              indicatorStyle={{
+                backgroundColor: '#F26F25',
+                width: "15%",
+                height: 3,
+                borderRadius: 40,
+                left: '9%',
+              }}
+            />
         }
       />
-    
-     
+
+
     </SafeAreaView>
   );
 

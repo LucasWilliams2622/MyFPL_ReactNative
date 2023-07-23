@@ -8,7 +8,7 @@ export const COLOR = {
     background: "#ffffff",
     background2: "#fff1ce",
     background3: "#FFEBB7",
-    background4: "#ABEBFF",
+    background4: "#CCF3FF",
 
     bgHeader:"#ffffff",
     bgItemSchedule:"#ffffff",
