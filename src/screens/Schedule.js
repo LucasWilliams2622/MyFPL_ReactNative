@@ -3,8 +3,9 @@ import React from 'react'
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import ScheduleStudy from './ScheduleStudy'
 import ScheduleExam from './ScheduleExam'
-import AppHeader from '../components/AppHeader'
+
 import { AppStyle } from '../constants/AppStyle';
+import AppHeader from '../components/AppHeader';
 
 const renderScene = SceneMap({
   first: ScheduleStudy,
