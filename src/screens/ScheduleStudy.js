@@ -1,9 +1,10 @@
-import { View, Text, StyleSheet, SafeAreaView, ScrollView, FlatList, Image,TouchableOpacity } from 'react-native'
-import React,{useState} from 'react'
+import { View, Text, StyleSheet, SafeAreaView, ScrollView, FlatList, Image, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
 import { AppStyle } from '../constants/AppStyle'
 import { Dropdown } from 'react-native-element-dropdown'
 import ItemSchedule from '../components/ItemSchedule';
 import { COLOR } from '../constants/Theme';
+
 
 
 const data = [
@@ -11,10 +12,9 @@ const data = [
   { label: '7 ngày tới', value: '2' },
   { label: '14 ngày tới', value: '3' },
   { label: '21 ngày tới', value: '4' },
-  { label: '28 ngày tới', value: '5' },
-  { label: '35 ngày tới', value: '6' },
-  { label: '42 ngày tới', value: '7' },
-  { label: '49 ngày tới', value: '8' },
+  { label: '30 ngày tới', value: '5' },
+  { label: '60 ngày tới', value: '6' },
+  { label: '90 ngày tới', value: '7' },
 ];
 
 const DataScheduleToday = [
@@ -29,7 +29,7 @@ const DataScheduleToday = [
     layer: "MD18102",
   },
   {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abbdsadas28ba',
     title: 'Game 3D',
     location: "Phòng T123 (Tòa F)",
     time: "Ca 4 | 15:15 - 17:15",
@@ -54,7 +54,7 @@ const ItemTextSches = (props) => {
   return (
     <SafeAreaView style={AppStyle.container}>
       <Dropdown
-        style={[AppStyle.dropdown, isFocus && {borderColor:COLOR.primary,borderBottomLeftRadius:0,borderBottomRightRadius:0}]}
+        style={[AppStyle.dropdown, isFocus && { borderColor: COLOR.primary, borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }]}
         placeholderStyle={styles.placeholderStyle}
         selectedTextStyle={styles.placeholderStyle}
         iconStyle={styles.iconStyle}
@@ -71,18 +71,22 @@ const ItemTextSches = (props) => {
         }}
         renderItem={renderItem}
       />
-      <Image style={[AppStyle.icon,{position:'absolute',left:30,top:28,tintColor:isFocus ? COLOR.primary : COLOR.black}]} source={require('../assets/icons/ic_schedule.png')}/>
+      <Image style={[AppStyle.icon, { position: 'absolute', left: 30, top: 28, tintColor: isFocus ? COLOR.primary : COLOR.black }]} source={require('../assets/icons/ic_schedule.png')} />
       <View style={styles.BoxContent}>
         <ScrollView>
           <Text style={[AppStyle.titleBig, { marginBottom: 10 }]}>Lịch học hôm nay</Text>
-          <FlatList
+          {/* <FlatList
             vertical
             showsVerticalScrollIndicator={false}
             data={DataScheduleToday}
             renderItem={({ item }) => <ItemSchedule data={item} />}
             keyExtractor={item => item.id}
-          />
-
+          /> */}
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: '100%' }}>
+            {DataScheduleToday.slice(0, Math.ceil(DataScheduleToday.length)).map((item) => (
+              <ItemSchedule data={item} key={item.id}/>
+            ))}
+          </View>
         </ScrollView>
       </View>
     </SafeAreaView>
@@ -129,6 +133,6 @@ const styles = StyleSheet.create({
     width: '100%',
 
     paddingHorizontal: 16,
-    paddingVertical:8
+    paddingVertical: 8
   },
 });

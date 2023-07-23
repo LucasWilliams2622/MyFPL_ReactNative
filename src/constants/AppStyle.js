@@ -115,7 +115,6 @@ export const AppStyle = StyleSheet.create({
         borderRadius: 8,
         height: 50,
         backgroundColor: 'white',
-        borderRadius: 10,
         padding: 12,
         shadowColor: 'black',
         shadowOffset: {

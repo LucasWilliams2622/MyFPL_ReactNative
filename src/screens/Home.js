@@ -103,12 +103,12 @@ const Home = () => {
 
     }
   }, [appState])
-//   return(
-//     <Image 
-//     source={require('../assets/gif/loading_bar.gif')}  
-//     style={{width: 300, height: 300 ,alignSelf:'center'}}
-// />
-//   )
+  //   return(
+  //     <Image 
+  //     source={require('../assets/gif/loading_bar.gif')}  
+  //     style={{width: 300, height: 300 ,alignSelf:'center'}}
+  // />
+  //   )
   return (
     <SafeAreaView style={AppStyle.container}>
       <AppHeader />
@@ -151,7 +151,7 @@ const Home = () => {
           </View>
           <View style={[AppStyle.column, { marginTop: 20, marginBottom: 80 }]}>
             <Text style={AppStyle.titleBig}>Tin tức doanh nghiệp !</Text>
-            <FlatList
+            {/* <FlatList
               numColumns={2}
               showsHorizontalScrollIndicator={false}
               showsVerticalScrollIndicator={false}
@@ -159,14 +159,14 @@ const Home = () => {
               data={DataNewsEnterprise}
               renderItem={({ item }) => <ItemNewsEnterprise data={item} />}
               keyExtractor={item => item.id}
-            />
-{/* 
+            /> */}
+             
             <View style={{ flexDirection: 'row', flexWrap: 'wrap' ,width:'100%',borderWidth:2,borderColor:'red'}}>
               {DataNewsEnterprise.slice(0, Math.ceil(DataNewsEnterprise.length )).map((item) => (
-                <ItemNewsEnterprise  data={item} />
+                <ItemNewsEnterprise  data={item}key={item.id} />
               ))}
-            </View>  */}
- 
+            </View>  
+
 
           </View>
         </View>
