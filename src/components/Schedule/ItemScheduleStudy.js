@@ -1,9 +1,9 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React, { useState } from 'react'
-import { AppStyle } from '../constants/AppStyle'
-import { COLOR } from '../constants/Theme'
+import { AppStyle } from '../../constants/AppStyle'
+import { COLOR } from '../../constants/Theme'
 
-const ItemSchedule = (props) => {
+const ItemScheduleStudy = (props) => {
     const { data } = props
     const { title, location, time, subJectCode, lecturers, amphitheater, layer } = data
 
@@ -20,12 +20,12 @@ const ItemSchedule = (props) => {
                     <View style={[AppStyle.column, { backgroundColor: "#FFE9B1", width: 165, padding: 10, borderRadius: 10, borderWidth: 1.5, borderColor: "#FF640D" }]}>
 
                         <View style={[AppStyle.row, { justifyContent: 'center', }]}>
-                            <Image style={[AppStyle.iconMedium, { top: 3, marginRight: 5, }]} source={require('../assets/icons/ic_location.png')} />
+                            <Image style={[AppStyle.iconMedium, { top: 3, marginRight: 5, }]} source={require('../../assets/icons/ic_location.png')} />
                             <Text style={[AppStyle.titleMedium, { color: COLOR.title }]}>{location}</Text>
                         </View>
                         <View style={[AppStyle.row, { marginTop: 2, justifyContent: 'space-between', alignItems: 'center' }]}>
                             <View style={[AppStyle.row, { marginTop: 8, justifyContent: 'center', }]}>
-                                <Image style={[AppStyle.iconMedium, { top: 3, marginRight: 5, }]} source={require('../assets/icons/ic_clock.png')} />
+                                <Image style={[AppStyle.iconMedium, { top: 3, marginRight: 5, }]} source={require('../../assets/icons/ic_clock.png')} />
                                 <Text style={[AppStyle.titleMedium, { color: COLOR.title }]}>{time}</Text>
                             </View>
 
@@ -45,7 +45,7 @@ const ItemSchedule = (props) => {
 
                     </View>
                     <TouchableOpacity onPress={facingShow} style={{ alignSelf: 'center' }}>
-                        <Image style={AppStyle.icon} source={isShow ? require('../assets/icons/ic_down.png') : require('../assets/icons/ic_right.png')} />
+                        <Image style={AppStyle.icon} source={isShow ? require('../../assets/icons/ic_down.png') : require('../../assets/icons/ic_right.png')} />
                     </TouchableOpacity>
                 </View>
 
@@ -70,4 +70,4 @@ const ItemSchedule = (props) => {
     )
 }
 
-export default ItemSchedule
+export default ItemScheduleStudy

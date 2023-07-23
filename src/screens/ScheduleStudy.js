@@ -2,8 +2,9 @@ import { View, Text, StyleSheet, SafeAreaView, ScrollView, FlatList, Image,Touch
 import React,{useState} from 'react'
 import { AppStyle } from '../constants/AppStyle'
 import { Dropdown } from 'react-native-element-dropdown'
-import ItemSchedule from '../components/ItemSchedule';
+import ItemScheduleExam from '../components/Schedule/ItemScheduleExam';
 import { COLOR } from '../constants/Theme';
+import ItemScheduleStudy from '../components/Schedule/ItemScheduleStudy';
 
 
 const data = [
@@ -79,7 +80,7 @@ const ItemTextSches = (props) => {
             vertical
             showsVerticalScrollIndicator={false}
             data={DataScheduleToday}
-            renderItem={({ item }) => <ItemSchedule data={item} />}
+            renderItem={({ item }) => <ItemScheduleStudy data={item} />}
             keyExtractor={item => item.id}
           />
 
