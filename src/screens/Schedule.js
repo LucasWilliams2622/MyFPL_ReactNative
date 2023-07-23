@@ -5,53 +5,53 @@ import ScheduleStudy from './ScheduleStudy'
 import ScheduleExam from './ScheduleExam'
 import AppHeader from '../components/AppHeader'
 import { AppStyle } from '../constants/AppStyle';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-const renderScene = SceneMap({
-  first: ScheduleStudy,
-  second: ScheduleExam,
-});
+
+const Tab = createMaterialTopTabNavigator();
+
+const options = ({ route }) => ({
+
+
+  tabBarLabel: ({ focused, color, size }) => {
+    if (route.name === 'ScheduleExam') {
+      return <Text style={{
+        color: focused ? "#F26F25" : '#787878',
+        fontSize:20,
+        fontWeight:'600'
+      }}>Lịch Học</Text>
+    } else if (route.name === 'ScheduleStudy') {
+      return <Text style={{
+        color: focused ? "#F26F25" : '#787878',
+        fontSize:20,
+        fontWeight:'600'
+      }}>Lịch Thi</Text>
+    }
+
+  },
+  tabBarIndicatorStyle: {
+    backgroundColor: '#F26F25',
+    width: "15%",
+    height: 3,
+    borderRadius: 40,
+    left:'18%',
+  },
+  tabBarStyle: {
+    backgroundColor: 'white',
+  },
+
+})
 
 const Schedule = () => {
-  const layout = useWindowDimensions();
-
-  const [index, setIndex] = React.useState(0);
-  const [routes] = React.useState([
-    { key: 'first', title: 'Lịch Học' },
-    { key: 'second', title: 'Lịch Thi' },
-  ]);
 
   return (
     <SafeAreaView style={AppStyle.container}>
-      <AppHeader  style={{ height: "45%",}}/>
-      <TabView
-        navigationState={{ index, routes }}
-        renderScene={renderScene}
-        onIndexChange={setIndex}
-        initialLayout={{ width: layout.width }}
-        renderTabBar = {
-          props => 
-          <TabBar {...props} 
-            renderLabel={({ route, color, focused }) => (
-              <Text style={{ fontSize:20,
-                  color: focused?"white":'#787878',
-                  backgroundColor:focused?"#F26F25":'white',
-                  borderRadius:8,
-                  paddingVertical:8,
-                  paddingHorizontal:20,
-              }}>
-                  {route.title}
-              </Text>
-            )}
-            // tabStyle={{width:'auto'}}
-            scrollEnabled={true}
-            indicatorStyle={{backgroundColor:'white'}}
-            style={{backgroundColor:'white'}} 
-          />
-        }
-      />
+      <AppHeader style={{ height: "45%"}} />
+      <Tab.Navigator screenOptions={options} >
+        <Tab.Screen name='ScheduleExam' component={ScheduleExam} />
+        <Tab.Screen name='ScheduleStudy' component={ScheduleStudy} />    
+      </Tab.Navigator>
     </SafeAreaView>
-
-
   );
 }
 

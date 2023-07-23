@@ -1,10 +1,93 @@
-import { View, Text, StyleSheet, SafeAreaView } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, SafeAreaView, ScrollView, FlatList, TouchableOpacity,Image } from 'react-native'
+import React, { useState } from 'react'
+import { AppStyle } from '../constants/AppStyle'
+import { Dropdown } from 'react-native-element-dropdown'
+import ItemSchedule from '../components/ItemSchedule';
+import { COLOR } from '../constants/Theme';
+
+
+
+const data = [
+  { label: '3 ngày tới', value: '1' },
+  { label: '7 ngày tới', value: '2' },
+  { label: '14 ngày tới', value: '3' },
+  { label: '21 ngày tới', value: '4' },
+  { label: '28 ngày tới', value: '5' },
+  { label: '35 ngày tới', value: '6' },
+  { label: '42 ngày tới', value: '7' },
+  { label: '49 ngày tới', value: '8' },
+];
+
+const DataScheduleToday = [
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28bdsadaa',
+    title: 'Game 2d',
+    location: "Phòng T123 (Tòa T)",
+    time: "Ca 4 | 15:15 - 17:15",
+    subJectCode: "MOB123",
+    lecturers: "dintnt24",
+    amphitheater: "Phần mềm quang trung",
+    layer:"MD18102",
+  },
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'Game 3D',
+    location: "Phòng T123 (Tòa F)",
+    time: "Ca 4 | 15:15 - 17:15",
+    subJectCode: "MOB123",
+    lecturers: "dintnt24",
+    amphitheater: "Phần mềm quang trung",
+    layer:"MD18102",
+  },
+];
 
 const ItemTextSches = () => {
-  return (
-    <SafeAreaView style={{}}>
+  const [value, setValue] = useState(null);
+  const [isFocus, setIsFocus] = useState(false);
 
+
+  const renderItem = item => {
+    return (
+      <View style={styles.item}>
+        <Text style={styles.textItem}>{item.label}</Text>
+      </View>
+    );
+  };
+  return (
+    <SafeAreaView style={AppStyle.container}>
+      <Dropdown
+        style={[AppStyle.dropdown, isFocus && {borderColor:COLOR.primary,borderBottomLeftRadius:0,borderBottomRightRadius:0}]}
+        placeholderStyle={styles.placeholderStyle}
+        selectedTextStyle={styles.placeholderStyle}
+        iconStyle={styles.iconStyle}
+        showsVerticalScrollIndicator={false}
+        data={data}
+        maxHeight={300}
+        labelField="label"
+        valueField="value"
+        placeholder={data[1].label}
+        onFocus={() => setIsFocus(true)}
+        onBlur={() => setIsFocus(false)}
+        value={value}
+        onChange={item => {
+          setValue(item.value);
+        }}
+        renderItem={renderItem}
+      />
+      <Image style={[AppStyle.icon,{position:'absolute',left:30,top:28,tintColor:isFocus ? COLOR.primary : COLOR.black}]} source={require('../assets/icons/ic_schedule.png')}/>
+      <View style={styles.BoxContent}>
+        <ScrollView>
+          <Text style={[AppStyle.titleBig,{marginBottom:10}]}>Lịch học hôm nay</Text>
+          <FlatList
+            vertical
+            showsVerticalScrollIndicator={false}
+            data={DataScheduleToday}
+            renderItem={({ item }) => <ItemSchedule data={item} />}
+            keyExtractor={item => item.id}
+          />
+
+        </ScrollView>
+      </View>
 
 
 
@@ -15,130 +98,43 @@ const ItemTextSches = () => {
 
 export default ItemTextSches
 
-
 const styles = StyleSheet.create({
-
-  body: {
-    position: "absolute",
-
-    left: 20,
-    backgroundColor: "#FFF",
-    height: 50,
-    width: 160,
-    borderRadius: 50
+  item: {
+    padding: 17,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: "93%"
   },
-  body2: {
-    position: "absolute",
-
-    right: 20,
-
-    backgroundColor: "#FFF",
-    height: 50,
-    width: 160,
-    borderRadius: 50
-  },
-  txt1: {
-    color: ' #F26F25',
-    position: "absolute",
-    fontSize: 20,
-    fontWeight: 'bold',
-    left: 38,
-    bottom: 12
-
-  },
-  txt2: {
-    color: 'white',
-    position: "absolute",
-    fontSize: 20,
-    fontWeight: 'bold',
-    left: 38,
-    bottom: 12
-  },
-  body3: {
-    backgroundColor: "#F26F25",
-    height: 40,
-    width: "100%",
-    borderRadius: 50,
-
-  },
-  txt3: {
+  textItem: {
+    flex: 1,
+    fontSize: 16,
     textAlign: 'center',
-    fontWeight: 'bold',
-    top: 11
-  },
-  body4: {
-    position: "absolute",
-    marginTop: '15%',
-    backgroundColor: "#FFFF",
-    width: 360,
-    height: 120,
-    borderRadius: 20,
-    left: 18
-
-
+    fontWeight: '600',
+    color: 'black',
 
   },
-  body5: {
-    backgroundColor: "#F26F25",
-    height: 110,
-    width: 5,
-    left: 8,
-    top: 14
-
-
+  placeholderStyle: {
+    fontSize: 16,
+    textAlign: 'center',
+    fontWeight: '600',
+    color: 'black',
 
   },
-  body6: {
-    backgroundColor: "#dddd",
-    height: 3,
-    width: 300,
-    left: 27,
-    bottom: 40
 
-
+  iconStyle: {
+    width: 30,
+    height: 30,
   },
-  txtt4: {
-    color: '#000',
-    bottom: 100,
-    left: 20
+  BoxContent: {
+    backgroundColor: COLOR.background2,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    marginTop: 10,
+    height: '100%',
+    width: '100%',
 
+    paddingHorizontal: 16,
+    paddingVertical:8
   },
-  txtt5: {
-    color: '#000',
-    bottom: 90,
-    left: 60
-
-  }, txtt6: {
-    color: '#000',
-    bottom: 76,
-    left: 50
-  },
-  txtt7: {
-    color: '#000',
-    bottom: 96,
-    left: 155
-  },
-  txtt8: {
-    color: '#000',
-    bottom: 115,
-    left: 255
-  },
-  txtt9: {
-    color: '#000',
-    bottom: 96,
-    left: 120
-  },
-  txtt10: {
-    color: '#000',
-    bottom: 115,
-    left: 200
-  }
-
-
-
-
-
-
-
-
-})
+});

@@ -6,7 +6,6 @@ export const AppStyle = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: COLOR.background,
-
     },
     icon: {
         width: 24,
@@ -106,7 +105,28 @@ export const AppStyle = StyleSheet.create({
         shadowOpacity: 0.18,
         shadowRadius: 4.59,
         elevation: 5
-    }
+    },
+
+    dropdown: {
+        margin: 15,
+        marginBottom: 0,
+        borderColor: '#C6C6C6',
+        borderWidth: 1,
+        borderRadius: 8,
+        height: 50,
+        backgroundColor: 'white',
+        borderRadius: 10,
+        padding: 12,
+        shadowColor: 'black',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 1.41,
+
+        elevation: 15,
+    },
 
 
 })
