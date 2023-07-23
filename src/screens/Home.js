@@ -1,13 +1,15 @@
 import { SafeAreaView, StyleSheet, Text, Image, View, ScrollView, FlatList, StatusBar } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { AppStyle } from '../constants/AppStyle'
 import AppHeader from '../components/AppHeader'
 import Swiper from 'react-native-swiper'
 import { COLOR } from '../constants/Theme'
+import { AppContext } from '../utils/AppContext'
+import AxiosInstance from '../constants/AxiosInstance';
+
 import ItemScheduleToday from '../components/Home/ItemScheduleToday'
 import ItemNews from '../components/Home/ItemNews'
 import ItemNewsEnterprise from '../components/Home/ItemNewsEnterprise'
-
 const DataScheduleToday = [
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28bdsadaa',
@@ -69,7 +71,44 @@ const DataNewsEnterprise = [
 
   },
 ]
+
+
 const Home = () => {
+  const { idUser, infoUser, currentDay, appState, setAppState } = useContext(AppContext);
+  const [dataCurrentSchedule, setDataCurrentSchedule] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  const getCurrentSchedule = async () => {
+    try {
+      // const response = await AxiosInstance().get("SchedulesSubject/api/get-by-current-day&currentDay=" + currentDay);
+      const response = await AxiosInstance().get("SchedulesSubject/api/get-all");
+      console.log("===================================response", response);
+
+      if (response.result) {
+        // console.log("===================================response", isLoading);
+        setDataCurrentSchedule(response.SchedulesSubject);
+        setIsLoading(false)
+      } else {
+        setIsLoading(true)
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    // console.log("INFOR ", infoUser);
+
+    getCurrentSchedule()
+    return () => {
+
+    }
+  }, [appState])
+//   return(
+//     <Image 
+//     source={require('../assets/gif/loading_bar.gif')}  
+//     style={{width: 300, height: 300 ,alignSelf:'center'}}
+// />
+//   )
   return (
     <SafeAreaView style={AppStyle.container}>
       <AppHeader />
@@ -121,6 +160,14 @@ const Home = () => {
               renderItem={({ item }) => <ItemNewsEnterprise data={item} />}
               keyExtractor={item => item.id}
             />
+{/* 
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap' ,width:'100%',borderWidth:2,borderColor:'red'}}>
+              {DataNewsEnterprise.slice(0, Math.ceil(DataNewsEnterprise.length )).map((item) => (
+                <ItemNewsEnterprise  data={item} />
+              ))}
+            </View>  */}
+ 
+
           </View>
         </View>
       </ScrollView>
