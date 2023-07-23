@@ -31,7 +31,7 @@ const Study = () => {
     <SafeAreaView style={styles.BoxContent} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
       
 
-      <ScrollView showsVerticalScrollIndicator={false} style={{width:"100%"}}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{width:"100%",marginBottom:70}}>
       
 
         <View style={[AppStyle.column, ]}>
