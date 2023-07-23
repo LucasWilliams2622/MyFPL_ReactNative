@@ -7,12 +7,8 @@ import AppHeader from '../components/AppHeader'
 import { AppStyle } from '../constants/AppStyle';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-
 const Tab = createMaterialTopTabNavigator();
-
 const options = ({ route }) => ({
-
-
   tabBarLabel: ({ focused, color, size }) => {
     if (route.name === 'ScheduleExam') {
       return <Text style={{
@@ -27,7 +23,6 @@ const options = ({ route }) => ({
         fontWeight:'600'
       }}>Lịch Thi</Text>
     }
-
   },
   tabBarIndicatorStyle: {
     backgroundColor: '#F26F25',
@@ -39,7 +34,6 @@ const options = ({ route }) => ({
   tabBarStyle: {
     backgroundColor: 'white',
   },
-
 })
 
 const Schedule = () => {

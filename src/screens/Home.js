@@ -10,6 +10,7 @@ import AxiosInstance from '../constants/AxiosInstance';
 import ItemScheduleToday from '../components/Home/ItemScheduleToday'
 import ItemNews from '../components/Home/ItemNews'
 import ItemNewsEnterprise from '../components/Home/ItemNewsEnterprise'
+
 const DataScheduleToday = [
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28bdsadaa',
