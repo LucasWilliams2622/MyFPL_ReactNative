@@ -1,12 +1,16 @@
 import { StyleSheet, Text, SafeAreaView, View, Image, TextInput, Pressable, useWindowDimensions, ScrollView } from 'react-native'
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
-import React from 'react'
+import React,{useState,useEffect,useContext} from 'react'
 import { AppStyle } from '../constants/AppStyle'
 import { COLOR } from '../constants/Theme'
 import AppHeader from '../components/AppHeader'
 import Activate from '../screens/Activate'
 import Study from '../screens/Study'
 import Enterprise from '../screens/Enterprise'
+import { AppContext } from '../utils/AppContext';
+import AxiosInstance from '../constants/AxiosInstance';
+
+
 
 
 
@@ -15,7 +19,12 @@ const renderScene = SceneMap({
   second: Activate,
   third: Enterprise,
 });
-const News = () => {
+const News = (props) => {
+  const { idUser, infoUser, currentDay, appState, setAppState } = useContext(AppContext);
+
+  const [dataCurrentNews, setdataCurrentNews] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+
   const layout = useWindowDimensions();
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
@@ -25,6 +34,39 @@ const News = () => {
 
 
   ]);
+ 
+
+  const getAllNews = async () => {
+    try {
+      // const response = await AxiosInstance().get("SchedulesSubject/api/get-by-current-day&currentDay=" + currentDay);
+      const response = await AxiosInstance().get("/news/api/get-all");
+      console.log("===================================response", response);
+
+      if (response.result) {
+        // console.log("===================================response", isLoading);
+        setdataCurrentNews(response.SchedulesSubject);
+        setIsLoading(false)
+      } else {
+        setIsLoading(true)
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    // console.log("INFOR ", infoUser);
+
+    getAllNews()
+    return () => {
+
+    }
+  }, [appState])
+  //   return(
+  //     <Image 
+  //     source={require('../assets/gif/loading_bar.gif')}  
+  //     style={{width: 300, height: 300 ,alignSelf:'center'}}
+  // />
+  //   )
   return (
     <SafeAreaView style={AppStyle.container}>
       <AppHeader style={{ height: "45%", }} />

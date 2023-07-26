@@ -88,7 +88,7 @@ export const AppStyle = StyleSheet.create({
             width: 0,
             height: 3,
         },
-        shadowOpacity: 0.18,
+        shadowOpacity: 0.8,
         shadowRadius: 4.59,
         elevation: 5
     },
@@ -99,8 +99,8 @@ export const AppStyle = StyleSheet.create({
         paddingHorizontal: 10,
         shadowColor: "#000000",
         shadowOffset: {
-            width: 0,
-            height: 3,
+            width: -2,
+            width: 3,
         },
         shadowOpacity: 0.18,
         shadowRadius: 4.59,

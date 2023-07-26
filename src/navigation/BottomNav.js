@@ -10,6 +10,9 @@ import Home from '../screens/Home';
 import News from '../screens/News';
 import Profile from '../screens/Profile';
 import Schedule from '../screens/Schedule';
+import NewsDetails from '../screens/NewsDetails';
+import ItemActivate from '../components/New/ItemActivate';
+import Study from '../screens/Study';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -43,6 +46,9 @@ const StackNews = () => {
     return (
         <Stack.Navigator initialRouteName="News" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="News" component={News} />
+            <Stack.Screen name="NewsDetails" component={NewsDetails} />
+            <Stack.Screen name="ItemActivate" component={ItemActivate} />
+            <Stack.Screen name="Study" component={Study} />
 
         </Stack.Navigator>
     )

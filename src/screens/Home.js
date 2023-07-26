@@ -134,7 +134,7 @@ const Home = () => {
               horizontal
               showsHorizontalScrollIndicator={false}
               showsVerticalScrollIndicator={false}
-              data={DataScheduleToday}
+              data={dataCurrentSchedule}
               renderItem={({ item }) => <ItemScheduleToday data={item} />}
               keyExtractor={item => item.id}
             />
