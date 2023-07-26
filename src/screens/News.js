@@ -9,16 +9,48 @@ import Study from '../screens/Study'
 import Enterprise from '../screens/Enterprise'
 import { AppContext } from '../utils/AppContext';
 import AxiosInstance from '../constants/AxiosInstance';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+
+const Tab = createMaterialTopTabNavigator();
+const options = ({ route }) => ({
+  tabBarLabel: ({ focused, color, size }) => {
+    if (route.name === 'Study') {
+      return <Text style={{
+        color: focused ? "#F26F25" : '#787878',
+        fontSize:17,
+        fontWeight:'600'
+      }}>Học Tập</Text>
+    } else if (route.name === 'Activate') {
+      return <Text style={{
+        color: focused ? "#F26F25" : '#787878',
+        fontSize:17,
+        fontWeight:'600'
+      }}>Hoạt Động</Text>
+    }else if (route.name === 'Enterprise') {
+      return <Text style={{
+        color: focused ? "#F26F25" : '#787878',
+        fontSize:17,
+        fontWeight:'600'
+      }}>Doanh Nghiệp</Text>
+    }
+  },
+  tabBarIndicatorStyle: {
+    backgroundColor: '#F26F25',
+    width: "15%",
+    height: 3,
+    borderRadius: 40,
+    left:'9%',
+  },
+  tabBarStyle: {
+    backgroundColor: 'white',
+  },
+})
 
 
 
 
 
-const renderScene = SceneMap({
-  first: Study,
-  second: Activate,
-  third: Enterprise,
-});
+
 const News = (props) => {
   const { idUser, infoUser, currentDay, appState, setAppState } = useContext(AppContext);
 
@@ -27,13 +59,7 @@ const News = (props) => {
 
   const layout = useWindowDimensions();
   const [index, setIndex] = React.useState(0);
-  const [routes] = React.useState([
-    { key: 'first', title: 'Học Tập' },
-    { key: 'second', title: 'Hoạt Động' },
-    { key: 'third', title: 'Doanh Nghiệp' },
 
-
-  ]);
  
 
   const getAllNews = async () => {
@@ -70,41 +96,11 @@ const News = (props) => {
   return (
     <SafeAreaView style={AppStyle.container}>
       <AppHeader style={{ height: "45%", }} />
-      <TabView
-        navigationState={{ index, routes }}
-        renderScene={renderScene}
-        onIndexChange={setIndex}
-        initialLayout={{ width: layout.width }}
-        renderTabBar={
-          props =>
-            <TabBar {...props}
-              renderLabel={({ route, color, focused }) => (
-                <Text style={{
-                  fontSize: 15,
-                  color: focused ? '#F26F25' : '#787878',
-                  fontWeight: "600",
-                  borderRadius: 8,
-                  paddingVertical: 8,
-                  paddingHorizontal: 10,
-                }}>
-                  {route.title}
-                </Text>
-              )}
-              // tabStyle={{width:'auto'}}
-              scrollEnabled={true}
-
-              style={{ backgroundColor: 'white' }}
-              indicatorStyle={{
-                backgroundColor: '#F26F25',
-                width: "15%",
-                height: 3,
-                borderRadius: 40,
-                left: '9%',
-              }}
-            />
-        }
-      />
-
+      <Tab.Navigator screenOptions={options} >
+        <Tab.Screen name='Study' component={Study} />
+        <Tab.Screen name='Activate' component={Activate} />    
+        <Tab.Screen name='Enterprise' component={Enterprise} />    
+      </Tab.Navigator>
 
     </SafeAreaView>
   );
