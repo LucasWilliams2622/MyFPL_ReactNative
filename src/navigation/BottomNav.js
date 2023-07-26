@@ -10,6 +10,8 @@ import Home from '../screens/Home';
 import News from '../screens/News';
 import Profile from '../screens/Profile';
 import Schedule from '../screens/Schedule';
+import DetailsNew from '../screens/DetailsNew';
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -43,6 +45,8 @@ const StackNews = () => {
     return (
         <Stack.Navigator initialRouteName="News" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="News" component={News} />
+            <Stack.Screen name="DetailsNew" component={DetailsNew} />
+
 
         </Stack.Navigator>
     )

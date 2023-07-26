@@ -29,11 +29,7 @@ const DataNewsStudy = [
 const Study = () => {
   return (
     <SafeAreaView style={styles.BoxContent} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
-      
-
       <ScrollView showsVerticalScrollIndicator={false} style={{width:"100%"}}>
-      
-
         <View style={[AppStyle.column, ]}>
           <View style={[AppStyle.column, ]}>
             <Text style={AppStyle.titleBig}> Tin mới nhất </Text>

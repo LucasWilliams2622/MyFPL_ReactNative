@@ -23,6 +23,7 @@ export const COLOR = {
     titleDistraction: "#6D6D6D",
     text: "#757575",
     normalText: "#848484",
+    icon:"#1f2328",
 
     border: "#5B5959",
     focus: "#f26f25",

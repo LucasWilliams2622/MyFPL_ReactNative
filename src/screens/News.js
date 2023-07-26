@@ -7,9 +7,6 @@ import AppHeader from '../components/AppHeader'
 import Activate from '../screens/Activate'
 import Study from '../screens/Study'
 import Enterprise from '../screens/Enterprise'
-
-
-
 const renderScene = SceneMap({
   first: Study,
   second: Activate,
@@ -48,16 +45,16 @@ const News = () => {
                   {route.title}
                 </Text>
               )}
-              // tabStyle={{width:'auto'}}
+              tabStyle={{ width: 140, left: -30 }}
               scrollEnabled={true}
 
-              style={{ backgroundColor: 'white' }}
+              style={{ backgroundColor: 'white', }}
               indicatorStyle={{
                 backgroundColor: '#F26F25',
                 width: "15%",
                 height: 3,
                 borderRadius: 40,
-                left: '9%',
+                marginLeft: 10
               }}
             />
         }

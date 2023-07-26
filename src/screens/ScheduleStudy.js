@@ -6,8 +6,6 @@ import ItemScheduleExam from '../components/Schedule/ItemScheduleExam';
 import { COLOR } from '../constants/Theme';
 import ItemScheduleStudy from '../components/Schedule/ItemScheduleStudy';
 
-
-
 const data = [
   { label: '3 ngày tới', value: '1' },
   { label: '7 ngày tới', value: '2' },

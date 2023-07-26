@@ -5,7 +5,7 @@ import { COLOR } from '../constants/Theme'
 
 const AppHeader = () => {
     return (
-        <SafeAreaView style={[AppStyle.header, AppStyle.row, { paddingTop: 20, paddingHorizontal: 16, justifyContent: 'space-between', }]}>
+        <SafeAreaView style={[AppStyle.header, AppStyle.row, { paddingTop: 20, paddingHorizontal: 16, justifyContent: 'space-between', borderWidth:2}]}>
             <TouchableOpacity style={[AppStyle.row, {}]}>
                 <Image style={AppStyle.avatar} source={require('../assets/images/defaultAvatar.png')} />
                 <View style={[AppStyle.column, { marginLeft: 7, justifyContent: 'center', paddingTop: 5 }]}>
