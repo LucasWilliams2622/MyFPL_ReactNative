@@ -126,6 +126,21 @@ export const AppStyle = StyleSheet.create({
 
         elevation: 15,
     },
+    buttonBlue: {
+        backgroundColor: COLOR.blue,
+        paddingHorizontal: 16,
+        paddingVertical: 10,
+        borderRadius:5,
+        alignItems:'center',
+        justifyContent:'center',
+        marginTop:10
+
+    },
+    titleButton:{
+        color:COLOR.white,
+        fontWeight:'500',
+        fontSize:16
+    }
 
 
 })

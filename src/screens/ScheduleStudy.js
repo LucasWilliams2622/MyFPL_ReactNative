@@ -10,31 +10,29 @@ import { AppContext } from '../utils/AppContext'
 import Swiper from 'react-native-swiper'
 
 const data = [
-  { label: '3 ngày tới', value: '1' },
-  { label: '7 ngày tới', value: '2' },
-  { label: '14 ngày tới', value: '3' },
-  { label: '21 ngày tới', value: '4' },
-  { label: '30 ngày tới', value: '5' },
-  { label: '60 ngày tới', value: '6' },
-  { label: '90 ngày tới', value: '7' },
+  { label: '7 ngày tới', value: '7' },
+  { label: '14 ngày tới', value: '14' },
+  { label: '30 ngày tới', value: '30' },
+  { label: '60 ngày tới', value: '60' },
+  { label: '90 ngày tới', value: '90' },
 ];
-
-
 
 const ItemTextSches = (props) => {
   const { idUser, infoUser, currentDay, appState, setAppState } = useContext(AppContext);
-  const [dataCurrentScheduleStudy, setdataCurrentScheduleStudy] = useState([])
+  const [dataScheduleByDay, setDataScheduleByDay] = useState([])
+  const [isFocus, setIsFocus] = useState(false);
+  const [value, setValue] = useState(7);
   const [isLoading, setIsLoading] = useState(true)
-
-  const getCurrentSchedule = async () => {
+  const getCurrentSchedule = async (value) => {
     try {
-      // const response = await AxiosInstance().get("SchedulesSubject/api/get-by-current-day&currentDay=" + currentDay);
-      const response = await AxiosInstance().get("scheduleStudy/api/get-all");
-      console.log("===================================response", response);
+      console.log("value",value);
+      // const response = await AxiosInstance().get("scheduleStudy/api/get-all");
+      const response = await AxiosInstance().get("scheduleStudy/api/get-by-"+value+"-day?currentDay="+currentDay);
+
+      console.log("===================================response", response.scheduleStudy[1].idSubject);
 
       if (response.result) {
-        // console.log("===================================response", isLoading);
-        setdataCurrentScheduleStudy(response.scheduleStudy);
+        setDataScheduleByDay(response.scheduleStudy);
         setIsLoading(false)
       } else {
         setIsLoading(true)
@@ -43,16 +41,7 @@ const ItemTextSches = (props) => {
       console.log(error);
     }
   }
-  useEffect(() => {
-    // console.log("INFOR ", infoUser);
 
-    getCurrentSchedule()
-    return () => {
-
-    }
-  }, [appState])
-  const [isFocus, setIsFocus] = useState(false);
-  const [value, setValue] = useState(null);
 
   const renderItem = item => {
     return (
@@ -61,6 +50,17 @@ const ItemTextSches = (props) => {
       </View>
     );
   };
+  useEffect(() => {
+    // console.log("INFOR ", infoUser);
+    console.log(value);
+
+    getCurrentSchedule(value)
+    return () => {
+
+    }
+  }, [value])
+
+
   return (
     <SafeAreaView style={AppStyle.container}>
       <Dropdown
@@ -92,7 +92,7 @@ const ItemTextSches = (props) => {
             : (<FlatList
               vertical
               showsVerticalScrollIndicator={false}
-              data={dataCurrentScheduleStudy}
+              data={dataScheduleByDay}
               renderItem={({ item }) => <ItemScheduleStudy data={item} />}
               keyExtractor={item => item.id}
             />)}

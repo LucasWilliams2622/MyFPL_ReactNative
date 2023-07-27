@@ -10,7 +10,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 const Tab = createMaterialTopTabNavigator();
 const options = ({ route }) => ({
   tabBarLabel: ({ focused, color, size }) => {
-      if (route.name === 'ScheduleStudy') {
+    if (route.name === 'ScheduleStudy') {
       return <Text style={{
         color: focused ? "#F26F25" : '#787878',
         fontSize: 20,
@@ -22,7 +22,7 @@ const options = ({ route }) => ({
         fontSize: 20,
         fontWeight: '600'
       }}>Lịch Thi</Text>
-    } 
+    }
   },
   tabBarIndicatorStyle: {
     backgroundColor: '#F26F25',
@@ -42,7 +42,7 @@ const Schedule = () => {
     <SafeAreaView style={AppStyle.container}>
       <AppHeader style={{ height: "45%" }} />
       <Tab.Navigator screenOptions={options} >
-      <Tab.Screen name='ScheduleStudy' component={ScheduleStudy} />
+        <Tab.Screen name='ScheduleStudy' component={ScheduleStudy} />
         <Tab.Screen name='ScheduleExam' component={ScheduleExam} />
       </Tab.Navigator>
     </SafeAreaView>

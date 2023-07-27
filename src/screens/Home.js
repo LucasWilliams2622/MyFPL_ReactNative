@@ -93,7 +93,7 @@ const Home = () => {
       <AppHeader />
       <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
         <View style={styles.wrapper} >
-          <Swiper showsButtons={false} autoplay={true} >
+          <Swiper showsButtons={false} autoplay={true}showsPagination={false} >
             <View style={styles.slide}>
               <Image style={styles.image} source={require('../assets/images/Banner1.png')} />
             </View>
