@@ -1,34 +1,24 @@
 import React, { useState } from 'react';
 import { View, Button, Modal, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Linking } from 'react-native';
+import Email from 'react-native-email';
+const sendEmail = () => {
+  const email = 'sonnvps24943@fpt.edu.vn'; // Địa chỉ email nhận
+  const subject = 'Tiêu đề email';
+  const body = 'Nội dung email';
 
+  const url = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  Linking.openURL(url);
+};
 const App = () => {
-  const [isOverlayVisible, setOverlayVisible] = useState(false);
 
-  const Overlay = () => (
-    <TouchableOpacity
-      style={styles.overlay}
-      activeOpacity={1}
-      onPress={() => setOverlayVisible(false)}
-    />
-  );
-
-  const Panel = () => (
-    <View style={styles.panel}>
-      <Text>Đây là nội dung của panel</Text>
-      <Button title="Đóng" onPress={() => setOverlayVisible(false)} />
-    </View>
-  );
 
   return (
     <View style={styles.container}>
-      <Button title="Hiển thị thông tin" onPress={() => setOverlayVisible(true)} />
+     <Button title="Gửi email" onPress={()=>{sendEmail()}} />
 
-      <Modal visible={isOverlayVisible} transparent>
-        <View style={styles.container}>
-          <Overlay />
-          <Panel />
-        </View>
-      </Modal>
+     
     </View>
   );
 };

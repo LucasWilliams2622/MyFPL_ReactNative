@@ -126,20 +126,41 @@ export const AppStyle = StyleSheet.create({
 
         elevation: 15,
     },
+    button: {
+        padding: 10,
+        borderRadius: 8,
+        borderWidth: 0.5,
+        borderColor: COLOR.border,
+        backgroundColor: COLOR.background,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+        paddingVertical:12,
+
+        shadowColor: "#000000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.17,
+        shadowRadius: 3.05,
+        elevation: 5
+    },
+
     buttonBlue: {
         backgroundColor: COLOR.blue,
         paddingHorizontal: 16,
         paddingVertical: 10,
-        borderRadius:5,
-        alignItems:'center',
-        justifyContent:'center',
-        marginTop:10
+        borderRadius: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 10
 
     },
-    titleButton:{
-        color:COLOR.white,
-        fontWeight:'500',
-        fontSize:16
+    titleButton: {
+        color: COLOR.white,
+        fontWeight: '500',
+        fontSize: 16
     }
 
 
