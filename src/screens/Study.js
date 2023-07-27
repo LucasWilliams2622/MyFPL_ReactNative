@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Image, ScrollView, FlatList, } from 'react-native'
-import React,{useState,useEffect,useContext} from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { AppStyle } from '../constants/AppStyle'
 import { COLOR } from '../constants/Theme'
@@ -81,19 +81,15 @@ export const dateNearThe = (max) => {
 
 const Study = (props) => {
   const { navigation } = props
-
-const { idUser, infoUser, currentDay, appState, setAppState } = useContext(AppContext);
-
+  const { idUser, infoUser, currentDay, appState, setAppState } = useContext(AppContext);
   const [dataCurrentNews, setdataCurrentNews] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-
 
   const getAllNews = async () => {
     try {
       // const response = await AxiosInstance().get("SchedulesSubject/api/get-by-current-day&currentDay=" + currentDay);
       const response = await AxiosInstance().get("/news/api/get-all");
       console.log("===================================response", response.news);
-
       if (response.result) {
         // console.log("===================================response", isLoading);
         setdataCurrentNews(response.news);
@@ -113,57 +109,46 @@ const { idUser, infoUser, currentDay, appState, setAppState } = useContext(AppCo
 
     }
   }, [appState])
-  //   return(
-  //     <Image 
-  //     source={require('../assets/gif/loading_bar.gif')}  
-  //     style={{width: 300, height: 300 ,alignSelf:'center'}}
-  // />
-  //   )
-
-
-
-
   return (
     <SafeAreaView style={styles.BoxContent} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
-
-
       <ScrollView showsVerticalScrollIndicator={false} style={{ width: "100%", marginBottom: 75 }}>
-
-
         <View style={[AppStyle.column,]}>
           <View style={[AppStyle.column,]}>
             <Text style={AppStyle.titleBig}> Tin mới nhất </Text>
             <Image style={[AppStyle.iconMedium, { position: "absolute", left: 110, bottom: 2 }]} source={require('../assets/icons/ic_new.png')} />
-
           </View>
-          <FlatList
-
-            vertical
-            showsHorizontalScrollIndicator={false}
-            showsVerticalScrollIndicator={false}
-            data={[DataNewsStudy[0]]}
-            renderItem={({ item }) => <ItemStudy data={item} />}
-            keyExtractor={item => item.id}
-
-          />
+          {isLoading ?
+            (<Image
+              source={require('../assets/gif/loading_bar.gif')}
+              style={{ width: 150, height: 100, alignSelf: 'center', }} />)
+            : (<FlatList
+              vertical
+              showsHorizontalScrollIndicator={false}
+              showsVerticalScrollIndicator={false}
+              data={[DataNewsStudy[0]]}
+              renderItem={({ item }) => <ItemStudy data={item} />}
+              keyExtractor={item => item.id}
+            />)}
         </View>
+        
         <View style={[AppStyle.column,]}>
           <View style={[AppStyle.column, { marginTop: 20 }]}>
             <Text style={AppStyle.titleBig}> Tin khác </Text>
-
           </View>
-          <FlatList
-
-            vertical
-            showsHorizontalScrollIndicator={false}
-            showsVerticalScrollIndicator={false}
-            data={dataCurrentNews}
-            renderItem={({ item }) => <ItemStudy data={item} />}
-            keyExtractor={item => item.id}
-          />
+          {isLoading ?
+            (<Image
+              source={require('../assets/gif/loading_bar.gif')}
+              style={{ width: 150, height: 100, alignSelf: 'center', }} />)
+            : (<FlatList
+              vertical
+              showsHorizontalScrollIndicator={false}
+              showsVerticalScrollIndicator={false}
+              data={dataCurrentNews}
+              renderItem={({ item }) => <ItemStudy data={item} />}
+              keyExtractor={item => item.id}
+            />)}
         </View>
       </ScrollView>
-
     </SafeAreaView>
   )
 }

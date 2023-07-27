@@ -70,9 +70,7 @@ const Home = () => {
       for (let i = 0; i < response.scheduleStudy.length; i++) {
         console.log("===================================response", response.scheduleStudy);
       }
-
       if (response.result) {
-        // console.log("===================================response", isLoading);
         setDataCurrentSchedule(response.scheduleStudy);
         setIsLoading(false)
       } else {
@@ -84,18 +82,12 @@ const Home = () => {
   }
   useEffect(() => {
     // console.log("INFOR ", infoUser);
-
     getCurrentSchedule()
     return () => {
 
     }
   }, [appState])
-  //   return(
-  //     <Image 
-  //     source={require('../assets/gif/loading_bar.gif')}  
-  //     style={{width: 300, height: 300 ,alignSelf:'center'}}
-  // />
-  //   )
+  
   return (
     <SafeAreaView style={AppStyle.container}>
       <AppHeader />
@@ -119,7 +111,7 @@ const Home = () => {
             {isLoading ?
               (<Image
                 source={require('../assets/gif/loading_bar.gif')}
-                style={{ width: 300, height: 300, alignSelf: 'center' }} />)
+                style={{width: 150, height: 100 ,alignSelf:'center',}} />)
               :
               (<FlatList
                 horizontal
@@ -136,7 +128,7 @@ const Home = () => {
             {
               isLoading ? (<Image
                 source={require('../assets/gif/loading_bar.gif')}
-                style={{ width: 300, height: 300, alignSelf: 'center' }} />)
+                style={{width: 150, height: 100 ,alignSelf:'center',}} />)
                 :
                 (<FlatList
                   horizontal

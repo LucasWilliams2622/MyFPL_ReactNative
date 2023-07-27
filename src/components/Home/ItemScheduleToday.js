@@ -4,7 +4,6 @@ import { AppStyle } from '../../constants/AppStyle'
 import { COLOR } from '../../constants/Theme'
 const ItemScheduleToday = (props) => {
     const { data } = props
-
     console.log(data);
     return (
         <TouchableOpacity style={[AppStyle.row, AppStyle.boxShadow, { backgroundColor: COLOR.background, borderRadius: 8, width: 270, height: 94, marginTop: 6, marginBottom: 10, marginRight: 10 }]}>

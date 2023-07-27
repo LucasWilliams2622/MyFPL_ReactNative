@@ -110,13 +110,19 @@ const ItemTextSches = () => {
       <View style={styles.BoxContent}>
         <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
           <Text style={[AppStyle.titleBig, { marginBottom: 10 }]}>Lịch thi hôm nay</Text>
-          <FlatList
-            vertical
-            showsVerticalScrollIndicator={false}
-            data={DataScheduleToday}
-            renderItem={({ item }) => <ItemScheduleExam data={item} />}
-            keyExtractor={item => item.id}
-          />
+
+          {isLoading ?
+              (<Image
+                source={require('../assets/gif/loading_bar.gif')}
+                style={{width: 150, height: 100 ,alignSelf:'center',}} />)
+              :( <FlatList
+                vertical
+                showsVerticalScrollIndicator={false}
+                data={DataScheduleToday}
+                renderItem={({ item }) => <ItemScheduleExam data={item} />}
+                keyExtractor={item => item.id}
+              />)}
+         
           
             {/* <View style={{ flexDirection: 'row', flexWrap: 'wrap' ,width:'100%',}}>
               {DataScheduleToday.slice(0, Math.ceil(DataScheduleToday.length )).map((item) => (

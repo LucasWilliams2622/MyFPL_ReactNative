@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, SafeAreaView, ScrollView, FlatList, Image, TouchableOpacity, StatusBar } from 'react-native'
-import React, { useState,useEffect,useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { AppStyle } from '../constants/AppStyle'
 import { Dropdown } from 'react-native-element-dropdown'
 import ItemScheduleExam from '../components/Schedule/ItemScheduleExam';
@@ -85,13 +85,17 @@ const ItemTextSches = (props) => {
       <View style={styles.BoxContent}>
         <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
           <Text style={[AppStyle.titleBig, { marginBottom: 10 }]}>Lịch học hôm nay</Text>
-          <FlatList
-            vertical
-            showsVerticalScrollIndicator={false}
-            data={dataCurrentScheduleStudy}
-            renderItem={({ item }) => <ItemScheduleStudy data={item} />}
-            keyExtractor={item => item.id}
-          />
+          {isLoading ?
+            (<Image
+              source={require('../assets/gif/loading_bar.gif')}
+              style={{ width: 150, height: 100, alignSelf: 'center', }} />)
+            : (<FlatList
+              vertical
+              showsVerticalScrollIndicator={false}
+              data={dataCurrentScheduleStudy}
+              renderItem={({ item }) => <ItemScheduleStudy data={item} />}
+              keyExtractor={item => item.id}
+            />)}
           {/* <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: '100%' }}>
             {DataScheduleToday.slice(0, Math.ceil(DataScheduleToday.length)).map((item) => (
               <ItemScheduleStudy data={item} key={item.id}/>
