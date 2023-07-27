@@ -1,10 +1,13 @@
-import { View, Text, StyleSheet, SafeAreaView, ScrollView, FlatList, TouchableOpacity, Image } from 'react-native'
-import React, { useState } from 'react'
+import { View, Text, StyleSheet, SafeAreaView, ScrollView, FlatList, TouchableOpacity, Image,StatusBar } from 'react-native'
+import React, { useState, useEffect ,useContext} from 'react'
 import { AppStyle } from '../constants/AppStyle'
 import { Dropdown } from 'react-native-element-dropdown'
 import ItemScheduleExam from '../components/Schedule/ItemScheduleExam';
 import { COLOR } from '../constants/Theme';
 import ItemSchedule from '../components/Schedule/ItemScheduleExam';
+import AxiosInstance from '../constants/AxiosInstance';
+import { AppContext } from '../utils/AppContext'
+import Swiper from 'react-native-swiper'
 
 const data = [
   { label: '3 ngày tới', value: '1' },
@@ -40,8 +43,39 @@ const DataScheduleToday = [
 ];
 
 const ItemTextSches = () => {
+  const { idUser, infoUser, currentDay, appState, setAppState } = useContext(AppContext);
+  const [dataCurrentScheduleExam, setdataCurrentScheduleExam] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  const getCurrentSchedule = async () => {
+    try {
+      // const response = await AxiosInstance().get("SchedulesSubject/api/get-by-current-day&currentDay=" + currentDay);
+      const response = await AxiosInstance().get("scheduleExam/api/get-all");
+      console.log("===================================response", response);
+
+      if (response.result) {
+        // console.log("===================================response", isLoading);
+        setdataCurrentScheduleExam(response.ScheduleExam);
+        setIsLoading(false)
+      } else {
+        setIsLoading(true)
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    // console.log("INFOR ", infoUser);
+
+    getCurrentSchedule()
+    return () => {
+
+    }
+  }, [appState])
+
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
+
 
   const renderItem = item => {
     return (
@@ -75,20 +109,20 @@ const ItemTextSches = () => {
       <Image style={[AppStyle.icon, { position: 'absolute', left: 30, top: 28, tintColor: isFocus ? COLOR.primary : COLOR.black }]} source={require('../assets/icons/ic_schedule.png')} />
       <View style={styles.BoxContent}>
         <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
-          <Text style={[AppStyle.titleBig, { marginBottom: 10 }]}>Lịch học hôm nay</Text>
-          {/* <FlatList
+          <Text style={[AppStyle.titleBig, { marginBottom: 10 }]}>Lịch thi hôm nay</Text>
+          <FlatList
             vertical
             showsVerticalScrollIndicator={false}
             data={DataScheduleToday}
             renderItem={({ item }) => <ItemScheduleExam data={item} />}
             keyExtractor={item => item.id}
-          /> */}
+          />
           
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap' ,width:'100%',}}>
+            {/* <View style={{ flexDirection: 'row', flexWrap: 'wrap' ,width:'100%',}}>
               {DataScheduleToday.slice(0, Math.ceil(DataScheduleToday.length )).map((item) => (
                 <ItemSchedule  data={item} key={item.id}/>
               ))}
-            </View> 
+            </View>  */}
         </ScrollView>
       </View>
     </SafeAreaView>

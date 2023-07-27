@@ -1,10 +1,13 @@
-import { View, Text, StyleSheet, SafeAreaView, ScrollView, FlatList, Image, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import { View, Text, StyleSheet, SafeAreaView, ScrollView, FlatList, Image, TouchableOpacity, StatusBar } from 'react-native'
+import React, { useState,useEffect,useContext } from 'react'
 import { AppStyle } from '../constants/AppStyle'
 import { Dropdown } from 'react-native-element-dropdown'
 import ItemScheduleExam from '../components/Schedule/ItemScheduleExam';
 import { COLOR } from '../constants/Theme';
 import ItemScheduleStudy from '../components/Schedule/ItemScheduleStudy';
+import AxiosInstance from '../constants/AxiosInstance';
+import { AppContext } from '../utils/AppContext'
+import Swiper from 'react-native-swiper'
 
 const data = [
   { label: '3 ngày tới', value: '1' },
@@ -40,6 +43,35 @@ const DataScheduleToday = [
 ];
 
 const ItemTextSches = (props) => {
+  const { idUser, infoUser, currentDay, appState, setAppState } = useContext(AppContext);
+  const [dataCurrentScheduleStudy, setdataCurrentScheduleStudy] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  const getCurrentSchedule = async () => {
+    try {
+      // const response = await AxiosInstance().get("SchedulesSubject/api/get-by-current-day&currentDay=" + currentDay);
+      const response = await AxiosInstance().get("scheduleStudy/api/get-all");
+      console.log("===================================response", response);
+
+      if (response.result) {
+        // console.log("===================================response", isLoading);
+        setdataCurrentScheduleStudy(response.scheduleStudy);
+        setIsLoading(false)
+      } else {
+        setIsLoading(true)
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    // console.log("INFOR ", infoUser);
+
+    getCurrentSchedule()
+    return () => {
+
+    }
+  }, [appState])
   const [isFocus, setIsFocus] = useState(false);
   const [value, setValue] = useState(null);
 
@@ -74,18 +106,18 @@ const ItemTextSches = (props) => {
       <View style={styles.BoxContent}>
         <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
           <Text style={[AppStyle.titleBig, { marginBottom: 10 }]}>Lịch học hôm nay</Text>
-          {/* <FlatList
+          <FlatList
             vertical
             showsVerticalScrollIndicator={false}
-            data={DataScheduleToday}
+            data={dataCurrentScheduleStudy}
             renderItem={({ item }) => <ItemScheduleStudy data={item} />}
             keyExtractor={item => item.id}
-          /> */}
-          <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: '100%' }}>
+          />
+          {/* <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: '100%' }}>
             {DataScheduleToday.slice(0, Math.ceil(DataScheduleToday.length)).map((item) => (
               <ItemScheduleStudy data={item} key={item.id}/>
             ))}
-          </View>
+          </View> */}
         </ScrollView>
       </View>
     </SafeAreaView>

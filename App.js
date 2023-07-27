@@ -11,8 +11,8 @@ const App = () => {
   return (
     <AppContextProvider>
       <NavigationContainer>
-        {/* <BottomTabs /> */}
-        <Test />
+        <BottomTabs />
+        {/* <Test /> */}
       </NavigationContainer>
     </AppContextProvider>
   )
