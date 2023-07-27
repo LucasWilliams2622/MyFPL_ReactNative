@@ -11,22 +11,7 @@ import ItemScheduleToday from '../components/Home/ItemScheduleToday'
 import ItemNews from '../components/Home/ItemNews'
 import ItemNewsEnterprise from '../components/Home/ItemNewsEnterprise'
 
-const DataScheduleToday = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28bdsadaa',
-    title: 'Game 2d',
-    location: "Phòng T123 (Tòa T)",
-    time: "Ca 4 | 15:15 - 17:15",
-    subJectCode: "MOB123",
-  },
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'Game 3D',
-    location: "Phòng T123 (Tòa F)",
-    time: "Ca 4 | 15:15 - 17:15",
-    subJectCode: "MOB123",
-  },
-];
+
 const DataNewsHome = [
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -73,7 +58,6 @@ const DataNewsEnterprise = [
   },
 ]
 
-
 const Home = () => {
   const { idUser, infoUser, currentDay, appState, setAppState } = useContext(AppContext);
   const [dataCurrentSchedule, setDataCurrentSchedule] = useState([])
@@ -81,13 +65,15 @@ const Home = () => {
 
   const getCurrentSchedule = async () => {
     try {
-      // const response = await AxiosInstance().get("SchedulesSubject/api/get-by-current-day&currentDay=" + currentDay);
-      const response = await AxiosInstance().get("SchedulesSubject/api/get-all");
-      console.log("===================================response", response);
+      console.log("currentDay", currentDay);
+      const response = await AxiosInstance().get("scheduleStudy/api/get-by-current-day?currentDay=" + currentDay);
+      for (let i = 0; i < response.scheduleStudy.length; i++) {
+        console.log("===================================response", response.scheduleStudy);
+      }
 
       if (response.result) {
         // console.log("===================================response", isLoading);
-        setDataCurrentSchedule(response.SchedulesSubject);
+        setDataCurrentSchedule(response.scheduleStudy);
         setIsLoading(false)
       } else {
         setIsLoading(true)
@@ -130,25 +116,37 @@ const Home = () => {
         <View style={styles.BoxContent} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
           <View style={AppStyle.column}>
             <Text style={AppStyle.titleBig}>Lịch học hôm nay</Text>
-            <FlatList
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              showsVerticalScrollIndicator={false}
-              data={dataCurrentSchedule}
-              renderItem={({ item }) => <ItemScheduleToday data={item} />}
-              keyExtractor={item => item.id}
-            />
+            {isLoading ?
+              (<Image
+                source={require('../assets/gif/loading_bar.gif')}
+                style={{ width: 300, height: 300, alignSelf: 'center' }} />)
+              :
+              (<FlatList
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                showsVerticalScrollIndicator={false}
+                data={dataCurrentSchedule}
+                renderItem={({ item }) => <ItemScheduleToday data={item} />}
+                keyExtractor={item => item.id}
+              />
+              )}
           </View>
           <View style={[AppStyle.column, { marginTop: 20 }]}>
             <Text style={AppStyle.titleBig}>Tin tức mới !</Text>
-            <FlatList
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              showsVerticalScrollIndicator={false}
-              data={DataNewsHome}
-              renderItem={({ item }) => <ItemNews data={item} />}
-              keyExtractor={item => item.id}
-            />
+            {
+              isLoading ? (<Image
+                source={require('../assets/gif/loading_bar.gif')}
+                style={{ width: 300, height: 300, alignSelf: 'center' }} />)
+                :
+                (<FlatList
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  showsVerticalScrollIndicator={false}
+                  data={DataNewsHome}
+                  renderItem={({ item }) => <ItemNews data={item} />}
+                  keyExtractor={item => item.id}
+                />)
+            }
           </View>
           <View style={[AppStyle.column, { marginTop: 20, marginBottom: 80 }]}>
             <Text style={AppStyle.titleBig}>Tin tức doanh nghiệp !</Text>
