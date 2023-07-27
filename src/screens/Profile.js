@@ -14,23 +14,23 @@ const Profile = () => {
         </View>
        <ItemProfile/>
         <View style={{ marginLeft: 10, marginBottom: 5 }}>
-          <Text style={[AppStyle.titleMedium, { color: COLOR.black, marginBottom: 5 }]}>Trạng Thái: <Text style={{ color: COLOR.normalText }}>HDI</Text></Text>
+          <Text style={[AppStyle.titleMedium, { color: COLOR.black, marginBottom: 5 }]}>Trạng Thái: <Text style={{ color: COLOR.normalText,fontWeight:'400' }}>HDI</Text></Text>
           <View style={{ backgroundColor: COLOR.normalText, height: 1 }}></View>
         </View>
         <View style={{ marginLeft: 10, marginBottom: 5 }}>
-          <Text style={[AppStyle.titleMedium, { color: COLOR.black, marginBottom: 5 }]}>Giới tính: <Text style={{ color: COLOR.normalText }}>Nam</Text></Text>
+          <Text style={[AppStyle.titleMedium, { color: COLOR.black, marginBottom: 5 }]}>Giới tính: <Text style={{ color: COLOR.normalText ,fontWeight:'400' }}>Nam</Text></Text>
           <View style={{ backgroundColor: COLOR.normalText, height: 1 }}></View>
         </View>
         <View style={{ marginLeft: 10, marginBottom: 5 }}>
-          <Text style={[AppStyle.titleMedium, { color: COLOR.black, marginBottom: 5 }]}>Ngày sinh: <Text style={{ color: COLOR.normalText }}>05-06-2003</Text></Text>
+          <Text style={[AppStyle.titleMedium, { color: COLOR.black, marginBottom: 5 }]}>Ngày sinh: <Text style={{ color: COLOR.normalText ,fontWeight:'400' }}>05-06-2003</Text></Text>
           <View style={{ backgroundColor: COLOR.normalText, height: 1 }}></View>
         </View>
         <View style={{ marginLeft: 10, marginBottom: 5 }}>
-          <Text style={[AppStyle.titleMedium, { color: COLOR.black, }]}>Chuyên ngành: <Text style={{ color: COLOR.normalText }}>Lập trình di động</Text></Text>
+          <Text style={[AppStyle.titleMedium, { color: COLOR.black, }]}>Chuyên ngành: <Text style={{ color: COLOR.normalText ,fontWeight:'400' }}>Lập trình di động</Text></Text>
           <View style={{ backgroundColor: COLOR.normalText, height: 1.2, marginTop: 5 }}></View>
         </View>
         <View style={{ marginLeft: 10, marginBottom: 5 }}>
-          <Text style={[AppStyle.titleMedium, { color: COLOR.black, marginBottom: 5 }]}>Địa chỉ: <Text style={{ color: COLOR.normalText }}>Địa chỉ: 12/23 khu phố 6, Đường abc, Phường XYZ, Quận 12, Tp.HCM</Text></Text>
+          <Text style={[AppStyle.titleMedium, { color: COLOR.black, marginBottom: 5 }]}>Địa chỉ: <Text style={{ color: COLOR.normalText,fontWeight:'400'  }}>Địa chỉ: 12/23 khu phố 6, Đường abc, Phường XYZ, Quận 12, Tp.HCM</Text></Text>
         </View>
       </View>
       <View style={{ margin: 16 }}>
