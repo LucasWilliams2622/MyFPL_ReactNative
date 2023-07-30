@@ -14,6 +14,7 @@ import DetailsNew from '../screens/DetailsNew';
 import NewsDetails from '../screens/NewsDetails';
 import ItemActivate from '../components/New/ItemActivate';
 import Study from '../screens/Study';
+import Activate from '../screens/Activate';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -46,7 +47,11 @@ const StackNews = () => {
     return (
         <Stack.Navigator initialRouteName="News" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="News" component={News} />
-
+            <Stack.Screen name="NewsDetails" component={NewsDetails} />
+            <Stack.Screen name="Activate" component={Activate} />
+            <Stack.Screen name="DetailsNew" component={DetailsNew} />
+            <Stack.Screen name="ItemActivate" component={ItemActivate} />
+            
         </Stack.Navigator>
     )
 }

@@ -89,7 +89,7 @@ const Study = (props) => {
     try {
       // const response = await AxiosInstance().get("SchedulesSubject/api/get-by-current-day&currentDay=" + currentDay);
       const response = await AxiosInstance().get("/news/api/get-all");
-      console.log("===================================response", response.news);
+      // console.log("===================================response", response.news);
       if (response.result) {
         // console.log("===================================response", isLoading);
         setdataCurrentNews(response.news);

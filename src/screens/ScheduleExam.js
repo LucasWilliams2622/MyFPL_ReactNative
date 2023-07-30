@@ -10,52 +10,30 @@ import { AppContext } from '../utils/AppContext'
 import Swiper from 'react-native-swiper'
 
 const data = [
-  { label: '3 ngày tới', value: '1' },
-  { label: '7 ngày tới', value: '2' },
-  { label: '14 ngày tới', value: '3' },
-  { label: '21 ngày tới', value: '4' },
-  { label: '30 ngày tới', value: '5' },
-  { label: '60 ngày tới', value: '6' },
-  { label: '90 ngày tới', value: '7' },
-];
-
-const DataScheduleToday = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-132123',
-    title: 'Game 2d',
-    location: "Phòng T123 (Tòa T)",
-    time: "Ca 4 | 15:15 - 17:15",
-    subJectCode: "MOB123",
-    lecturers: "dintnt24",
-    amphitheater: "Phần mềm quang trung",
-    layer: "MD18102",
-  },
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'Game 3D',
-    location: "Phòng T123 (Tòa F)",
-    time: "Ca 4 | 15:15 - 17:15",
-    subJectCode: "MOB123",
-    lecturers: "dintnt24",
-    amphitheater: "Phần mềm quang trung",
-    layer: "MD18102",
-  },
+  { label: '7 ngày tới', value: '7' },
+  { label: '14 ngày tới', value: '14' },
+  { label: '30 ngày tới', value: '30' },
+  { label: '60 ngày tới', value: '60' },
+  { label: '90 ngày tới', value: '90' },
 ];
 
 const ItemTextSches = () => {
   const { idUser, infoUser, currentDay, appState, setAppState } = useContext(AppContext);
   const [dataCurrentScheduleExam, setdataCurrentScheduleExam] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [isFocus, setIsFocus] = useState(false);
+  const [value, setValue] = useState(7);
+
 
   const getCurrentSchedule = async () => {
     try {
       // const response = await AxiosInstance().get("SchedulesSubject/api/get-by-current-day&currentDay=" + currentDay);
-      const response = await AxiosInstance().get("scheduleExam/api/get-all");
-      console.log("===================================response", response);
-
+      const response = await AxiosInstance().get("scheduleExam/api/get-by-"+value+"-day?currentDay="+currentDay);
+      console.log("===================================response", response.scheduleExam[1].idSubject);
+      console.log(value)
       if (response.result) {
         // console.log("===================================response", isLoading);
-        setdataCurrentScheduleExam(response.ScheduleExam);
+        setdataCurrentScheduleExam(response.scheduleExam);
         setIsLoading(false)
       } else {
         setIsLoading(true)
@@ -73,8 +51,6 @@ const ItemTextSches = () => {
     }
   }, [appState])
 
-  const [value, setValue] = useState(null);
-  const [isFocus, setIsFocus] = useState(false);
 
 
   const renderItem = item => {
@@ -97,7 +73,7 @@ const ItemTextSches = () => {
         maxHeight={300}
         labelField="label"
         valueField="value"
-        placeholder={data[1].label}
+        placeholder={data[0].label}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
         value={value}
@@ -118,7 +94,7 @@ const ItemTextSches = () => {
               :( <FlatList
                 vertical
                 showsVerticalScrollIndicator={false}
-                data={DataScheduleToday}
+                data={dataCurrentScheduleExam}
                 renderItem={({ item }) => <ItemScheduleExam data={item} />}
                 keyExtractor={item => item.id}
               />)}
