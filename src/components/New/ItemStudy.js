@@ -9,7 +9,6 @@ import { useNavigation } from '@react-navigation/native'
 const ItemStudy = (props) => {
     const navigation = useNavigation();
     const { data } = props
-    // const {id, title, content, name, date } = data
     const [isShow, setIsShow] = useState(false)
     const [showImg, setshowImg] = useState(false)
     const facingShow = () => {
@@ -30,7 +29,7 @@ const ItemStudy = (props) => {
             <Text style={{ display: isShow ? 'flex' : 'none' }}>{data.content}</Text>
             <Text style={[AppStyle.text, { flex: 1, marginTop: 5, display: isShow ? 'none' : 'flex' }]}>Người Đăng :{data.author}</Text>
             <View style={[AppStyle.row, { width: '100%', marginTop: 5 }]}>
-                <Text style={[AppStyle.text, { flex: 1 }]}>Thời gian :{data.date}</Text>
+                <Text style={[AppStyle.text, { flex: 1 }]}>Thời gian :{data.date.slice(0,10)}</Text>
                 <Text style={[AppStyle.text, { flex: 1, display: isShow ? 'flex' : 'none' }]}>Người Đăng :{data.name}</Text>
 
                 <TouchableOpacity onPress={facingShow} style={[AppStyle.column, { justifyContent: 'center', alignItems: 'center', alignSelf: 'flex-end', flex: 1 }]}>

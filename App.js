@@ -3,7 +3,8 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { AppContextProvider } from './src/utils/AppContext'
 import BottomTabs from './src/navigation/BottomNav';
-import Test from './src/test/TestModal';
+import Test from './src/test/TesTMap';
+import Testloing from './src/screens/Test'
 
 
 const App = () => {

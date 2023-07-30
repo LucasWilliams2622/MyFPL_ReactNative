@@ -11,9 +11,9 @@ const ItemProfile = () => {
           <View style={[AppStyle.row, { width: '100%', padding: 16, alignItems: 'center', borderRadius: 10 }]}>
             <Image style={{ width: 70, height: 70, borderRadius: 100 }} source={require('../../assets/images/green_field.jpg')} />
             <View style={{ marginLeft: 15 }}>
-              <Text style={[AppStyle.titleMedium, { color: COLOR.black }]}>Nguyễn Văn AAA</Text>
-              <Text style={[AppStyle.titleMedium]}>PS36233</Text>
-              <Text style={[AppStyle.titleSmall, { color: COLOR.normalText }]}>nguyenvanaaa@fpt.edu.vn</Text>
+              <Text style={[AppStyle.titleMedium, { color: COLOR.black ,marginBottom:4}]}>Nguyễn Văn AAA</Text>
+              <Text style={[AppStyle.titleMedium,{marginBottom:4}]}>PS36233</Text>
+              <Text style={[AppStyle.titleSmall, { color: COLOR.normalText,marginBottom:4 }]}>nguyenvanaaa@fpt.edu.vn</Text>
             </View>
 
           </View>
