@@ -141,7 +141,7 @@ const Home = () => {
             }
           </View>
           <View style={[AppStyle.column, { marginTop: 20, marginBottom: 80 }]}>
-            <Text style={AppStyle.titleBig}>Tin tức doanh nghiệp !</Text>
+            <Text style={[AppStyle.titleBig,{marginBottom:6}]}>Tin tức doanh nghiệp !</Text>
             <FlatList
               numColumns={2}
               showsHorizontalScrollIndicator={false}
@@ -151,14 +151,11 @@ const Home = () => {
               renderItem={({ item }) => <ItemNewsEnterprise data={item} />}
               keyExtractor={item => item.id}
             />
-
             {/* <View style={{ flexDirection: 'row', flexWrap: 'wrap' ,width:'100%',borderWidth:2,borderColor:'red'}}>
               {DataNewsEnterprise.slice(0, Math.ceil(DataNewsEnterprise.length )).map((item) => (
                 <ItemNewsEnterprise  data={item}key={item.id} />
               ))}
             </View>   */}
-
-
           </View>
         </View>
       </ScrollView>

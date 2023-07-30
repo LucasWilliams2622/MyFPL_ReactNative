@@ -6,7 +6,7 @@ import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-si
 const Test = () => {
 
   useEffect(() => {
-    GoogleSignin.configure({ webClientId: '999490167711-v29oh1m4p7u2vf1libthj7m2klog9ttp.apps.googleusercontent.com' });
+    GoogleSignin.configure({ webClientId: '325734138709-fqqf46vstodpaarhm4f0qtchc0bcitjd.apps.googleusercontent.com' });
 
   }, [])
 

@@ -20,10 +20,11 @@ const Login = () => {
   const [isFocus, setIsFocus] = useState(false);
   const { isLogin, setIsLogin, setInfoUser, setIdUser } = useContext(AppContext);
   useEffect(() => {
-    GoogleSignin.configure({ webClientId: 'AIzaSyABcfD8ASqFwnRAcHR2_wD_DYWfOa4h_24' });
+    GoogleSignin.configure({ webClientId: '325734138709-fqqf46vstodpaarhm4f0qtchc0bcitjd.apps.googleusercontent.com' });
   }, [])
   const signInGoogle = async () => {
     try {
+      console.log("CLICK");
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       console.log("aaaaaaaaaaaaaaaaaaa");
@@ -108,7 +109,7 @@ const Login = () => {
             }}
           />
         </View>
-        <TouchableOpacity style={[AppStyle.border, { marginHorizontal: 16 }]} onPress={()=>{signInGoogle()}} >
+        <TouchableOpacity style={[AppStyle.border, { marginHorizontal: 16 }]} onPress={() => { signInGoogle() }} >
           <View style={[AppStyle.row, { alignItems: 'center', paddingVertical: 14, paddingHorizontal: 16 }]}>
             <Image style={[AppStyle.icon, { marginRight: 15 }]} source={require('../assets/icons/Google.png')} />
             <Text style={AppStyle.text}>Đăng nhập bằng Google</Text>
