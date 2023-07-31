@@ -20,7 +20,7 @@ const Login = () => {
   const [isFocus, setIsFocus] = useState(false);
   const { isLogin, setIsLogin, setInfoUser, setIdUser } = useContext(AppContext);
   useEffect(() => {
-    GoogleSignin.configure({ webClientId: '325734138709-fqqf46vstodpaarhm4f0qtchc0bcitjd.apps.googleusercontent.com' });
+    GoogleSignin.configure({ webClientId: '958168256676-vbmerou4973fic0h12e93sgjinmtm6eg.apps.googleusercontent.com' });
   }, [])
   const signInGoogle = async () => {
     try {
@@ -60,15 +60,17 @@ const Login = () => {
         console.log(error);
       }
     } catch (error) {
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        // user cancelled the login flow
-      } else if (error.code === statusCodes.IN_PROGRESS) {
-        // operation (e.g. sign in) is in progress already
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        // play services not available or outdated
-      } else {
-        // some other error happened
-      }
+      console.log(error);
+
+      // if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+      //   // user cancelled the login flow
+      // } else if (error.code === statusCodes.IN_PROGRESS) {
+      //   // operation (e.g. sign in) is in progress already
+      // } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+      //   // play services not available or outdated
+      // } else {
+      //   // some other error happened
+      // }
     }
   };
   const renderLabel = () => {
