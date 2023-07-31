@@ -14,16 +14,15 @@ const ItemActivate = (props) => {
        navigation.navigate("DetailsNew", { id: data._id })
         
     }
+    
     return (
         <TouchableOpacity onPress={()=> goDetail()}  style={[AppStyle.item, { width: 360, marginVertical: 5, }]}>
+                <Image style={{ width:"100%", height: 140, borderRadius: 8 }} source={{uri: data.image}} />
 
-            <Text style={[AppStyle.titleMedium, { color: COLOR.title }]} numberOfLines={1}>{data.title}</Text>
-            <View style={[AppStyle.row, { marginTop: 8}]}>
-                <Image style={{ width:180, height: 85, borderRadius: 8 }} source={require('../../assets/images/green_field.jpg')} />
-                <View style={[AppStyle.column, {}]}>
-                    <Text style={[AppStyle.text, { width:165, paddingHorizontal: 8, marginTop:10 }]}  numberOfLines={4}>{data.content}</Text>
-                </View>
-            </View>
+            <Text style={[AppStyle.titleBig, {textAlign:"center",marginTop:10 }]} numberOfLines={1}>{data.title}</Text>
+          
+                    <Text style={[AppStyle.titleSmall, { marginTop:10,width:'80%',color:COLOR.text,fontWeight:'400' }]}  numberOfLines={1}>{data.content}</Text>
+           
             
             <View style={[AppStyle.row, { marginTop: 15 }]}>
                 <Text style={[AppStyle.text, { flex: 1 }]}>Người Đăng :{data.author}</Text>
