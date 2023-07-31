@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, SafeAreaView, ScrollView, FlatList, TouchableOpacity, Image,StatusBar } from 'react-native'
-import React, { useState, useEffect ,useContext} from 'react'
+import { View, Text, StyleSheet, SafeAreaView, ScrollView, FlatList, TouchableOpacity, Image, StatusBar } from 'react-native'
+import React, { useState, useEffect, useContext } from 'react'
 import { AppStyle } from '../constants/AppStyle'
 import { Dropdown } from 'react-native-element-dropdown'
 import ItemScheduleExam from '../components/Schedule/ItemScheduleExam';
@@ -20,6 +20,7 @@ const data = [
 const ItemTextSches = () => {
   const { idUser, infoUser, currentDay, appState, setAppState } = useContext(AppContext);
   const [dataCurrentScheduleExam, setdataCurrentScheduleExam] = useState([])
+  const [dataCurrendayScheduleExam, setDataCurrendayScheduleExam] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [isFocus, setIsFocus] = useState(false);
   const [value, setValue] = useState(7);
@@ -28,12 +29,14 @@ const ItemTextSches = () => {
   const getCurrentSchedule = async () => {
     try {
       // const response = await AxiosInstance().get("SchedulesSubject/api/get-by-current-day&currentDay=" + currentDay);
-      const response = await AxiosInstance().get("scheduleExam/api/get-by-"+value+"-day?currentDay="+currentDay);
-      console.log("===================================response", response.scheduleExam[1].idSubject);
+      const response = await AxiosInstance().get("scheduleExam/api/get-by-" + value + "-day?currentDay=" + currentDay);
+      const responseCurrenDay = await AxiosInstance().get("scheduleExam/api/get-by-current-day?currentDay=" + currentDay);
+      console.log("===================================response", responseCurrenDay);
       console.log(value)
       if (response.result) {
         // console.log("===================================response", isLoading);
         setdataCurrentScheduleExam(response.scheduleExam);
+        setDataCurrendayScheduleExam(responseCurrenDay.scheduleExam);
         setIsLoading(false)
       } else {
         setIsLoading(true)
@@ -88,23 +91,31 @@ const ItemTextSches = () => {
           <Text style={[AppStyle.titleBig, { marginBottom: 10 }]}>Lịch thi hôm nay</Text>
 
           {isLoading ?
-              (<Image
-                source={require('../assets/gif/loading_bar.gif')}
-                style={{width: 150, height: 100 ,alignSelf:'center',}} />)
-              :( <FlatList
-                vertical
-                showsVerticalScrollIndicator={false}
-                data={dataCurrentScheduleExam}
-                renderItem={({ item }) => <ItemScheduleExam data={item} />}
-                keyExtractor={item => item.id}
-              />)}
-         
-          
-            {/* <View style={{ flexDirection: 'row', flexWrap: 'wrap' ,width:'100%',}}>
-              {DataScheduleToday.slice(0, Math.ceil(DataScheduleToday.length )).map((item) => (
-                <ItemSchedule  data={item} key={item.id}/>
-              ))}
-            </View>  */}
+            (<Image
+              source={require('../assets/gif/loading_bar.gif')}
+              style={{ width: 150, height: 100, alignSelf: 'center', }} />)
+            : (<FlatList
+              vertical
+              showsVerticalScrollIndicator={false}
+              data={dataCurrendayScheduleExam}
+              renderItem={({ item }) => <ItemScheduleExam data={item} />}
+              keyExtractor={item => item.id}
+            />)}
+
+          <Text style={[AppStyle.titleBig, { marginBottom: 10 }]}>Lịch thi {value} ngày tới</Text>
+
+          {isLoading ?
+            (<Image
+              source={require('../assets/gif/loading_bar.gif')}
+              style={{ width: 150, height: 100, alignSelf: 'center', }} />)
+            : (<FlatList
+              vertical
+              showsVerticalScrollIndicator={false}
+              data={dataCurrentScheduleExam}
+              renderItem={({ item }) => <ItemScheduleExam data={item} />}
+              keyExtractor={item => item.id}
+            />)}
+
         </ScrollView>
       </View>
     </SafeAreaView>

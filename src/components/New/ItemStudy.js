@@ -29,7 +29,7 @@ const ItemStudy = (props) => {
 
                 <Text style={[AppStyle.text, { flex: 1 }]}>Thời gian :{data.date.slice(0,10)}</Text>
 
-                <Text style={[AppStyle.text, { flex: 1, display: isShow ? 'flex' : 'none' }]}>Người Đăng :{data.name}</Text>
+                <Text style={[AppStyle.text, { flex: 1, display: isShow ? 'flex' : 'none' }]}>Người Đăng :{data.author}</Text>
 
                 <TouchableOpacity onPress={facingShow} style={[AppStyle.column, { justifyContent: 'center', alignItems: 'center', alignSelf: 'flex-end', flex: 1 }]}>
                     <Text style={[AppStyle.titleSmall, { fontWeight: '400', alignSelf: 'flex-end' }]}> {isShow ? "Ẩn bớt" : "Xem thêm"}</Text>

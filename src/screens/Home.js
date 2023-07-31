@@ -61,17 +61,23 @@ const DataNewsEnterprise = [
 const Home = () => {
   const { idUser, infoUser, currentDay, appState, setAppState } = useContext(AppContext);
   const [dataCurrentSchedule, setDataCurrentSchedule] = useState([])
+  const [dataNewsActivate, setDataNewsActivate] = useState([])
+  const [dataNewsEnterprise, setDataNewsEnterprise] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
   const getCurrentSchedule = async () => {
     try {
       console.log("currentDay", currentDay);
       const response = await AxiosInstance().get("scheduleStudy/api/get-by-current-day?currentDay=" + currentDay);
+      const responseActivate = await AxiosInstance().get("news/api/get-all");
+      const responseEnterprise = await AxiosInstance().get("news/api/get-all");
       for (let i = 0; i < response.scheduleStudy.length; i++) {
-        console.log("===================================response", response.scheduleStudy);
+        console.log("===================================responseActivate", responseEnterprise);
       }
       if (response.result) {
         setDataCurrentSchedule(response.scheduleStudy);
+        setDataNewsActivate(responseActivate.news)
+        setDataNewsEnterprise(responseEnterprise.news)
         setIsLoading(false)
       } else {
         setIsLoading(true)
@@ -134,7 +140,7 @@ const Home = () => {
                   horizontal
                   showsHorizontalScrollIndicator={false}
                   showsVerticalScrollIndicator={false}
-                  data={DataNewsHome}
+                  data={dataNewsActivate}
                   renderItem={({ item }) => <ItemNews data={item} />}
                   keyExtractor={item => item.id}
                 />)
@@ -147,15 +153,11 @@ const Home = () => {
               showsHorizontalScrollIndicator={false}
               showsVerticalScrollIndicator={false}
               vertical
-              data={DataNewsEnterprise}
+              data={dataNewsEnterprise}
               renderItem={({ item }) => <ItemNewsEnterprise data={item} />}
               keyExtractor={item => item.id}
             />
-            {/* <View style={{ flexDirection: 'row', flexWrap: 'wrap' ,width:'100%',borderWidth:2,borderColor:'red'}}>
-              {DataNewsEnterprise.slice(0, Math.ceil(DataNewsEnterprise.length )).map((item) => (
-                <ItemNewsEnterprise  data={item}key={item.id} />
-              ))}
-            </View>   */}
+           
           </View>
         </View>
       </ScrollView>

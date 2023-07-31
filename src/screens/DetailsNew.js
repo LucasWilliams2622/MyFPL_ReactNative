@@ -13,7 +13,7 @@ const DetailsNew = (props) => {
   const {navigation,route} = props;
   const {params} = route;
   const [dataNewsById, setDataNewsById] = useState({})
-
+  const [date, setDate] = useState(undefined)
 
   const { idUser, infoUser, currentDay, appState, setAppState } = useContext(AppContext);
 
@@ -26,7 +26,7 @@ const DetailsNew = (props) => {
       if (response.result) {
         // console.log("===================================response", isLoading);
         setDataNewsById(response.news)
-        
+        setDate(response.news.date.slice(0,10))
       }
     } catch (error) {
       console.log(error);
@@ -45,7 +45,7 @@ const DetailsNew = (props) => {
     <SafeAreaView style={[AppStyle.container, { padding: 16 }]}>
       <TouchableOpacity style={[AppStyle.row]} onPress={()=>{navigation.goBack()}}>
         <Image source={require('../assets/icons/ic_back_black.png')} />
-        <Text style={[AppStyle.titleMedium]}> Chi tiết</Text>
+        <Text style={[AppStyle.titleMedium,{backgroundColor:'white'}]}> Chi tiết</Text>
 
       </TouchableOpacity>
       <Text style={[AppStyle.titleBig, { marginTop: 10 }]}>{dataNewsById.title}</Text>
@@ -65,7 +65,7 @@ const DetailsNew = (props) => {
                 
                     <Text>Người đăng:  {dataNewsById.author}</Text>
                  
-                    <Text> Thời gian: {dataNewsById.date.slice(0,10)}</Text>
+                    <Text> Thời gian: {date}</Text>
                    
             </View>
         </View>
