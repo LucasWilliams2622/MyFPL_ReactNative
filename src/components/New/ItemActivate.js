@@ -16,7 +16,7 @@ const ItemActivate = (props) => {
     }
     
     return (
-        <TouchableOpacity onPress={()=> goDetail()}  style={[AppStyle.item, { width: 360, marginVertical: 5, }]}>
+        <TouchableOpacity onPress={()=> goDetail()}  style={[AppStyle.item, { width: 360 }]}>
                 <Image style={{ width:"100%", height: 140, borderRadius: 8 }} source={{uri: data.image}} />
 
             <Text style={[AppStyle.titleBig, {textAlign:"center",marginTop:10 }]} numberOfLines={1}>{data.title}</Text>

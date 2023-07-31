@@ -16,11 +16,11 @@ const ItemNews = (props) => {
     }
     return (
         <TouchableOpacity onPress={()=>goDetail()} style={[AppStyle.item, {margin:5}]}>
-            <Text style={[AppStyle.titleMedium, { color: COLOR.title }]} numberOfLines={1}>{data.title}</Text>
+            <Text style={[AppStyle.titleMedium, { color: COLOR.title,width:280 }]} numberOfLines={1}>{data.title}</Text>
             <View style={[AppStyle.row, { marginTop: 8, }]}>
-                <Image style={{ width: 130, height: 85, borderRadius: 8 }} source={require('../../assets/images/green_field.jpg')} />
+                <Image style={{ width: 130, height: 85, borderRadius: 8 }} source={{uri:data.image}} />
                 <View style={[AppStyle.column, {}]}>
-                    <Text style={[AppStyle.text, { width: 180, height: 70, paddingHorizontal: 8, }]} numberOfLines={6}>{data.content}</Text>
+                    <Text style={[AppStyle.text, { width: 180, height: 70, paddingHorizontal: 8, textAlign:'justify'}]} numberOfLines={5}>{data.content}</Text>
                     <TouchableOpacity style={[AppStyle.column, { justifyContent: 'center', alignItems: 'center', alignSelf: 'flex-end' }]}>
                         <Text style={[AppStyle.titleSmall, { fontWeight: '400' }]}>Xem thêm</Text>
                         <View style={{ height: 1, width: 30, backgroundColor: COLOR.primary }} />

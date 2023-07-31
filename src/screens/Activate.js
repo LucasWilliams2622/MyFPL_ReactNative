@@ -34,11 +34,11 @@ const Activate = () => {
   const getAllNews = async () => {
     try {
       // const response = await AxiosInstance().get("SchedulesSubject/api/get-by-current-day&currentDay=" + currentDay);
-      const response = await AxiosInstance().get("/news/api/get-all");
-      console.log("===================================response", response.news);
+      const response = await AxiosInstance().get("/news/api/search-by-category?id=64c7b309704c7286d864e646");
+      // console.log("===================================response", response.news.reverse());
       if (response.result) {
         // console.log("===================================response", isLoading);
-        setdataCurrentNews(response.news);
+        setdataCurrentNews(response.news.reverse());
         setIsLoading(false)
       } else {
         setIsLoading(true)
@@ -59,11 +59,6 @@ const Activate = () => {
   return (
     <SafeAreaView style={[styles.BoxContent,{paddingBottom:95}]} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
       <ScrollView showsVerticalScrollIndicator={false} style={{ width: "100%" }}>
-        <View style={[AppStyle.column,]}>
-          <View style={[AppStyle.column,]}>
-            <Text style={AppStyle.titleBig}> Tin mới nhất </Text>
-            <Image style={[AppStyle.iconMedium, { position: "absolute", left: 110, bottom: 2 }]} source={require('../assets/icons/ic_new.png')} />
-          </View>
           {isLoading ?
             (<Image
               source={require('../assets/gif/loading_bar.gif')}
@@ -76,25 +71,6 @@ const Activate = () => {
               renderItem={({ item }) => <ItemActivate data={item} />}
               keyExtractor={item => item.id}
             />)}
-        </View>
-        <View style={[AppStyle.column,]}>
-          <View style={[AppStyle.column, { marginTop: 20 }]}>
-            <Text style={AppStyle.titleBig}> Tin mới khác </Text>
-            <Image style={[AppStyle.iconMedium, { position: "absolute", left: 110, bottom: 2 }]} source={require('../assets/icons/ic_new.png')} />
-          </View>
-          {isLoading ?
-            (<Image
-              source={require('../assets/gif/loading_bar.gif')}
-              style={{ width: 150, height: 100, alignSelf: 'center', }} />)
-            : (<FlatList
-              vertical
-              showsHorizontalScrollIndicator={false}
-              showsVerticalScrollIndicator={false}
-              data={dataCurrentNews}
-              renderItem={({ item }) => <ItemActivate data={item} />}
-              keyExtractor={item => item.id}
-            />)}
-        </View>
       </ScrollView>
     </SafeAreaView>
   )

@@ -31,7 +31,7 @@ const ItemTextSches = (props) => {
       const response = await AxiosInstance().get("scheduleStudy/api/get-by-" + value + "-day?currentDay=" + currentDay);
       const responseCurrenDay = await AxiosInstance().get("scheduleStudy/api/get-by-current-day?currentDay=" + currentDay);
 
-      console.log("===================================response", responseCurrenDay);
+      // console.log("===================================response", responseCurrenDay.scheduleStudy.length);
 
       if (response.result) {
         setDataScheduleByDay(response.scheduleStudy);
@@ -63,7 +63,6 @@ const ItemTextSches = (props) => {
     }
   }, [value])
 
-
   return (
     <SafeAreaView style={AppStyle.container}>
       <Dropdown
@@ -87,11 +86,11 @@ const ItemTextSches = (props) => {
       <Image style={[AppStyle.icon, { position: 'absolute', left: 30, top: 28, tintColor: isFocus ? COLOR.primary : COLOR.black }]} source={require('../assets/icons/ic_schedule.png')} />
       <View style={styles.BoxContent}>
         <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
-          <Text style={[AppStyle.titleBig, { marginBottom: 10 }]}>Lịch học hôm nay</Text>
+          <Text style={[AppStyle.titleBig, { marginBottom: 10 ,display: dataScheduleCurrenday.length > 0 ? 'flex':'none' }]}>Lịch học hôm nay</Text>
           {isLoading ?
             (<Image
               source={require('../assets/gif/loading_bar.gif')}
-              style={{ width: 150, height: 100, alignSelf: 'center', }} />)
+              style={{ width: 150, height: 100, alignSelf: 'center', display: dataScheduleCurrenday.length > 0 ? 'flex':'none'  }} />)
             : (<FlatList
               vertical
               showsVerticalScrollIndicator={false}

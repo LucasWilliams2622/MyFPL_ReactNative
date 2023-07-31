@@ -88,12 +88,12 @@ const ItemTextSches = () => {
       <Image style={[AppStyle.icon, { position: 'absolute', left: 30, top: 28, tintColor: isFocus ? COLOR.primary : COLOR.black }]} source={require('../assets/icons/ic_schedule.png')} />
       <View style={styles.BoxContent}>
         <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
-          <Text style={[AppStyle.titleBig, { marginBottom: 10 }]}>Lịch thi hôm nay</Text>
+          <Text style={[AppStyle.titleBig, { marginBottom: 10,display: dataCurrendayScheduleExam.length > 0 ? 'flex':'none'  }]}>Lịch thi hôm nay</Text>
 
           {isLoading ?
             (<Image
               source={require('../assets/gif/loading_bar.gif')}
-              style={{ width: 150, height: 100, alignSelf: 'center', }} />)
+              style={{ width: 150, height: 100, alignSelf: 'center', display: dataCurrendayScheduleExam.length > 0 ? 'flex':'none' }} />)
             : (<FlatList
               vertical
               showsVerticalScrollIndicator={false}
