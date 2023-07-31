@@ -1,19 +1,66 @@
 import { SafeAreaView, StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import { AppStyle } from '../constants/AppStyle'
 import { COLOR } from '../constants/Theme'
 import ItemProfile from '../components/Profile/ItemProfile'
 import { Linking } from 'react-native';
+import Geolocation from '@react-native-community/geolocation';
+import MapView, { Marker } from 'react-native-maps';
+
 const sendEmail = () => {
   const email = 'sonnvps24943@fpt.edu.vn'; // Địa chỉ email nhận
   const subject = 'Tiêu đề email';
   const body = 'Nội dung email';
 
   const url = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
   Linking.openURL(url);
 };
 const Profile = () => {
+  const [origin, setOrigin] = useState(null);
+  const [destination, setDestination] = useState(null);
+  const [directions, setDirections] = useState(null);
+  const [currentLocation, setCurrentLocation] = useState(null);
+  const handleDirection = () => {
+      if (origin && destination) {
+          setDirections({
+              origin: origin.description,
+              destination: destination.description,
+          });
+      }
+  };
+  const [position, setPosition] = useState({
+      latitude: 10.853864,
+      longitude: 106.627351,
+      latitudeDelta: 0.001,
+      longitudeDelta: 0.01,
+  });
+  const [position2, setPosition2] = useState({
+      latitude: 10.8529642,
+      longitude: 106.6282855,
+      latitudeDelta: 0.1,
+      longitudeDelta: 0.01,
+  });
+  const [position3, setPosition3] = useState({
+      latitude: 10.8529096,
+      longitude: 106.6291175,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01,
+  });
+  // add this to the component's useEffect hook
+  useEffect(() => {
+      Geolocation.getCurrentPosition(
+          position => {
+              setCurrentLocation({
+                  latitude: position.coords.latitude,
+                  longitude: position.coords.longitude,
+                  latitudeDelta: 0.01,
+                  longitudeDelta: 0.01,
+              });
+          },
+          error => console.log(error),
+          { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+      );
+  }, []);
   return (
     <SafeAreaView style={[AppStyle.container]}>
       <View style={[AppStyle.column, AppStyle.boxShadow, { paddingHorizontal: 16, paddingVertical: 8, borderBottomStartRadius: 20, borderBottomEndRadius: 20, width: '102%', elevation: 4, top: -6, left: -4 }]}>
@@ -41,7 +88,32 @@ const Profile = () => {
       </View>
 
       <ScrollView style={{ paddingVertical: 12, paddingHorizontal: 16, marginBottom: 100 }} showsVerticalScrollIndicator={false}>
-        <View style={{ width: '100%', backgroundColor: 'gray', height: 150, borderRadius: 20, marginBottom: 10 }}>
+        <View style={{ width: '100%', backgroundColor: 'gray',borderWidth:1, height: 150,  marginBottom: 10 }}>
+        <MapView
+                style={styles.map}
+                initialRegion={position}
+                showsUserLocation={true}
+                showsMyLocationButton={true}
+                followsUserLocation={true}
+                showsCompass={true}
+                scrollEnabled={true}
+                zoomEnabled={true}
+                pitchEnabled={true}
+                rotateEnabled={true}>
+                <Marker
+                    title='Yor are here'
+                    description='This is a description'
+                    coordinate={position} />
+                <Marker
+                    title='Yor are here'
+                    description='This is a description'
+                    coordinate={position2} />
+                <Marker
+                    title='Yor are here'
+                    description='This is a description'
+                    coordinate={position3} />
+
+            </MapView>
         </View>
         <Text style={[AppStyle.titleBig, { marginBottom: 8 }]}>Hỗ trợ</Text>
         <TouchableOpacity style={[AppStyle.button, { marginBottom: 20 }]}
@@ -61,4 +133,16 @@ const Profile = () => {
 
 export default Profile
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  map: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius:20,
+},
+search: {
+    position: 'absolute',
+    top: 50,
+    left: 10,
+    right: 10,
+    flexDirection: 'row',
+},
+})
