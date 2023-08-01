@@ -17,18 +17,20 @@ const dataLocation = [
 ];
 const Login = () => {
   const [value, setValue] = useState(null);
+  const [userInfo, setuserInfo] = useState(null)
   const [isFocus, setIsFocus] = useState(false);
   const { isLogin, setIsLogin, setInfoUser, setIdUser } = useContext(AppContext);
   useEffect(() => {
-    GoogleSignin.configure({ webClientId: '958168256676-vbmerou4973fic0h12e93sgjinmtm6eg.apps.googleusercontent.com' });
+    GoogleSignin.configure({ webClientId: '203283551475-ogvoc8nku450g54posg3esufgds86ht0.apps.googleusercontent.com' });
   }, [])
   const signInGoogle = async () => {
     try {
       console.log("CLICK");
       await GoogleSignin.hasPlayServices();
+      console.log("CLICK2");
       const userInfo = await GoogleSignin.signIn();
       console.log("aaaaaaaaaaaaaaaaaaa");
-
+      setuserInfo(userInfo);
       const email = userInfo.user.email;
       const name = userInfo.user.name;
       const avatar = userInfo.user.photo;
@@ -86,7 +88,7 @@ const Login = () => {
     <SafeAreaView style={AppStyle.container}>
       <Image style={styles.image} source={require('../assets/images/ban_tin.png')} />
       <View style={styles.boxLogin}>
-        <Text style={[AppStyle.title, { alignSelf: 'center' }]}>Đăng nhập</Text>
+        <Text style={[AppStyle.titleBig, { alignSelf: 'center' }]}>Đăng nhập</Text>
         <View style={styles.container}>
           {renderLabel()}
           <Dropdown

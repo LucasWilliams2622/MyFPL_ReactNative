@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, Image, TextInput, TouchableOpacity } from 'reac
 import MapView, { Marker } from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import MapViewDirections from 'react-native-maps-directions';
-const GOOGLE_MAPS_APIKEY = 'AIzaSyCt1M8bgRStC2ZVsWWJuYcv3N0FcS2zjTY';
+const GOOGLE_MAPS_APIKEY = 'AIzaSyCTj77B8GpV0Wzt7KCqJGb2ZRA5V6uHB1Q';
 import Geolocation from '@react-native-community/geolocation';
 Geolocation.getCurrentPosition(info => console.log(info));
 export default function App(props) {
@@ -65,6 +65,7 @@ export default function App(props) {
                 scrollEnabled={true}
                 zoomEnabled={true}
                 pitchEnabled={true}
+                apiKey={GOOGLE_MAPS_APIKEY}
                 rotateEnabled={true}>
                 <Marker
                     title='Yor are here'

@@ -88,7 +88,7 @@ const Profile = () => {
       </View>
 
       <ScrollView style={{ paddingVertical: 12, paddingHorizontal: 16, marginBottom: 100 }} showsVerticalScrollIndicator={false}>
-        <View style={{ width: '100%', backgroundColor: 'gray',borderWidth:1, height: 150,  marginBottom: 10 }}>
+        <View style={{ width: '100%', backgroundColor: 'gray',borderWidth:1, height: 170,  marginBottom: 10 }}>
         <MapView
                 style={styles.map}
                 initialRegion={position}
@@ -116,7 +116,7 @@ const Profile = () => {
             </MapView>
         </View>
         <Text style={[AppStyle.titleBig, { marginBottom: 8 }]}>Hỗ trợ</Text>
-        <TouchableOpacity style={[AppStyle.button, { marginBottom: 20 }]}
+        <TouchableOpacity style={[AppStyle.button, { marginBottom: 16 }]}
           onPress={() => { sendEmail() }}>
           <Image style={AppStyle.icon} source={require('../assets/icons/Google.png')} />
           <Text style={[AppStyle.titleMedium, { color: COLOR.black, textAlign: 'center', fontWeight: '500', marginLeft: 10 }]}>Gửi Gmail hỗ trợ</Text>

@@ -3,8 +3,10 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { AppContextProvider } from './src/utils/AppContext'
 import BottomTabs from './src/navigation/BottomNav';
-import Test from './src/test/TesTMap';
+import Test from './src/screens/Test';
 import Testloing from './src/screens/Test'
+import TesTMap from './src/test/TesTMap'
+
 
 
 const App = () => {
@@ -13,7 +15,7 @@ const App = () => {
     <AppContextProvider>
       <NavigationContainer>
         <BottomTabs />
-        {/* <Test /> */}
+        {/* <TesTMap /> */}
       </NavigationContainer>
     </AppContextProvider>
   )
