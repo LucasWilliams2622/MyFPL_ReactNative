@@ -1,5 +1,5 @@
 import { SafeAreaView, StyleSheet, Text, View, Image, Modal, ScrollView, TouchableOpacity } from 'react-native'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { AppStyle } from '../constants/AppStyle'
 import { COLOR } from '../constants/Theme'
 import ItemProfile from '../components/Profile/ItemProfile'
@@ -7,7 +7,15 @@ import { Linking } from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 import MapView, { Marker } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
-const Profile = () => {
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AppContext } from "../utils/AppContext";
+
+
+// console.log("AAAAAAAAAAAAA",AsyncStorage.getItem());
+const Profile = (props) => {
+  const { navigation } = props;
+  const { infoUser, idUser } = useContext(AppContext);
+
   const handleGetDirections = () => {
     const data = {
       source: {
@@ -25,13 +33,11 @@ const Profile = () => {
         },
       ],
     };
-  
+
     const url = `https://www.google.com/maps/dir/?api=1&destination=${data.destination.latitude},${data.destination.longitude}&travelmode=${data.params[0].value}`;
-  
+
     Linking.openURL(url);
   };
-  
-  const [modalVisible, setModalVisible] = useState(false);
 
   const sendEmail = (email) => {
     const subject = 'Tiêu đề email';
@@ -44,6 +50,7 @@ const Profile = () => {
   const [destination, setDestination] = useState(null);
   const [directions, setDirections] = useState(null);
   const [currentLocation, setCurrentLocation] = useState(null);
+
   const handleDirection = () => {
     if (origin && destination) {
       setDirections({
@@ -104,11 +111,11 @@ const Profile = () => {
           <TouchableOpacity style={styles.button1} onPress={() => sendEmail('qhdn.fplhcm@fe.edu.vn')}>
             <Text style={[AppStyle.titleMedium, { color: COLOR.title }]}>Phòng quan hệ doanh nghiệp</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button1,{backgroundColor:'#FFD1DA',borderColor:'#FFD1DA'}]}
+          <TouchableOpacity style={[styles.button1, { backgroundColor: '#FFD1DA', borderColor: '#FFD1DA' }]}
             onPress={() => sendEmail('daotaofpoly.hcm@fe.edu.vn')}>
             <Text style={[AppStyle.titleMedium, { color: COLOR.title }]}>Phòng đào tạo</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button1,{backgroundColor:'#FFF7D4',borderColor:'#FEFF86'}]}onPress={() => sendEmail('dvsvpoly.hcm@poly.edu.vn')}>
+          <TouchableOpacity style={[styles.button1, { backgroundColor: '#FFF7D4', borderColor: '#FEFF86' }]} onPress={() => sendEmail('dvsvpoly.hcm@poly.edu.vn')}>
             <Text style={[AppStyle.titleMedium, { color: COLOR.title }]}>Phòng dịch vụ sinh viên</Text>
           </TouchableOpacity>
         </View>
@@ -118,6 +125,9 @@ const Profile = () => {
       </TouchableOpacity>
     </View>
   );
+  const goChat = () => {
+    navigation.navigate("ChatTest");
+  }
   return (
     <SafeAreaView style={[AppStyle.container]}>
       <View style={[AppStyle.column, AppStyle.boxShadow, { paddingHorizontal: 16, paddingVertical: 8, borderBottomStartRadius: 20, borderBottomEndRadius: 20, width: '102%', elevation: 4, top: -6, left: -4 }]}>
@@ -178,7 +188,7 @@ const Profile = () => {
           <Text style={[AppStyle.titleMedium, { color: COLOR.black, textAlign: 'center', fontWeight: '500', marginLeft: 10 }]}>Gửi Gmail hỗ trợ</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[AppStyle.button, { marginBottom: 20 }]}
-          onPress={() => { { } }}>
+          onPress={() => { { goChat() } }}>
           <Image style={AppStyle.icon} source={require('../assets/icons/ic_message_color.png')} />
           <Text style={[AppStyle.titleMedium, { color: COLOR.black, textAlign: 'center', fontWeight: '500', marginLeft: 10 }]}>Nhắn tin hỗ trợ</Text>
         </TouchableOpacity>
@@ -233,8 +243,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderColor: '#D5FFE4',
     marginBottom: 12,
-    width:240,
-    alignItems:'center'
+    width: 240,
+    alignItems: 'center'
 
 
   }

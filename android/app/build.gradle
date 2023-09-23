@@ -258,6 +258,10 @@ android {
         }
     }
 }
+project.ext.react = [
+    entryFile: "index.js",
+    enableHermes: false,  // clean and rebuild if changing
+]
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
@@ -275,6 +279,12 @@ dependencies {
     // implementation(project(':react-native-onesignal')){
     //     exclude group: 'com.google.android.gms'
     // }
+
+
+    implementation project(':rnwebrtc')
+    implementation project(':rnincallmanager')
+    implementation project(':rnfgservice')
+
 
     implementation(project(':react-native-maps')){
         exclude group: 'com.google.android.gms'

@@ -1,4 +1,4 @@
-import { SafeAreaView, StyleSheet, Text, Image, View, TouchableOpacity, ToastAndroid } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, Image, View, TouchableOpacity, ToastAndroid, KeyboardAvoidingView } from 'react-native'
 import React, { useState, useEffect, useContext } from 'react'
 import { COLOR } from '../constants/Theme'
 import LinearGradient from 'react-native-linear-gradient';
@@ -7,6 +7,8 @@ import { Dropdown } from 'react-native-element-dropdown';
 import AxiosInstance from '../constants/AxiosInstance';
 import { AppContext } from '../utils/AppContext';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+import { TextInput } from 'react-native-paper';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const dataLocation = [
   { labelLocation: 'Cơ sở Hồ Chí Minh', valueLocation: '1' },
@@ -17,8 +19,9 @@ const dataLocation = [
 ];
 const Login = () => {
   const [value, setValue] = useState(null);
-  const [userInfo, setuserInfo] = useState(null)
   const [isFocus, setIsFocus] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('')
   const { isLogin, setIsLogin, setInfoUser, setIdUser } = useContext(AppContext);
   useEffect(() => {
     GoogleSignin.configure({ webClientId: '203283551475-ogvoc8nku450g54posg3esufgds86ht0.apps.googleusercontent.com' });
@@ -30,7 +33,6 @@ const Login = () => {
       console.log("CLICK2");
       const userInfo = await GoogleSignin.signIn();
       console.log("aaaaaaaaaaaaaaaaaaa");
-      setuserInfo(userInfo);
       const email = userInfo.user.email;
       const name = userInfo.user.name;
       const avatar = userInfo.user.photo;
@@ -78,14 +80,42 @@ const Login = () => {
   const renderLabel = () => {
     if (value || isFocus) {
       return (
-        <Text style={[styles.label, isFocus && { color: COLOR.primary }]}>
-        </Text>
+        <></>
       );
     }
     return null;
   };
+  const saveUserInfo = async (userInfo) => {
+    try {
+      await AsyncStorage.setItem('userInfo', JSON.stringify(userInfo));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const SignIn = async () => {
+    try {
+      // const userInfo = await AsyncStorage.getItem('userInfo');
+      // if (userInfo !== null) {
+      //   setIsLogin(true)
+      // } else {
+        const response = await AxiosInstance().post("user/api/login", { email: email, password: password });
+        console.log(response);
+        if (response.result) {
+          setIdUser(response.user._id)
+          setInfoUser(response.user)
+          // saveUserInfo(true)
+          setIsLogin(true)
+        } else {
+          console.log("Login failed");
+          ToastAndroid.show("Đăng nhập thất bại hãy thử lại", ToastAndroid.SHORT);
+        }
+      // }
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
-    <SafeAreaView style={AppStyle.container}>
+    <KeyboardAvoidingView style={AppStyle.container}>
       <Image style={styles.image} source={require('../assets/images/ban_tin.png')} />
       <View style={styles.boxLogin}>
         <Text style={[AppStyle.titleBig, { alignSelf: 'center' }]}>Đăng nhập</Text>
@@ -113,15 +143,25 @@ const Login = () => {
             }}
           />
         </View>
-        <TouchableOpacity style={[AppStyle.border, { marginHorizontal: 16 }]} onPress={() => { signInGoogle() }} >
+
+        <View style={[AppStyle.border, { marginHorizontal: 16, backgroundColor: COLOR.background, }]}>
+          <TextInput style={{ backgroundColor: COLOR.background }} placeholder='Email' placeholderTextColor={COLOR.normalText} onChangeText={(text) => setEmail(text)}  />
+        </View>
+        <View style={[AppStyle.border, { marginHorizontal: 16, marginTop: 10, backgroundColor: COLOR.background, }]}>
+          <TextInput style={{ backgroundColor: COLOR.background }} placeholder='Password' placeholderTextColor={COLOR.normalText} onChangeText={(text) => setPassword(text)}secureTextEntry />
+        </View>
+        <TouchableOpacity style={[AppStyle.border, AppStyle.button, { marginHorizontal: 16, marginTop: 16, alignItems: 'center', backgroundColor: COLOR.primary }]} onPress={() => { SignIn() }} >
+          <Text style={AppStyle.titleButton}>Đăng nhập</Text>
+        </TouchableOpacity>
+        {/* <TouchableOpacity style={[AppStyle.border, { marginHorizontal: 16 }]} onPress={() => { signInGoogle() }} >
           <View style={[AppStyle.row, { alignItems: 'center', paddingVertical: 14, paddingHorizontal: 16 }]}>
             <Image style={[AppStyle.icon, { marginRight: 15 }]} source={require('../assets/icons/Google.png')} />
             <Text style={AppStyle.text}>Đăng nhập bằng Google</Text>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
-      <Image style={{ bottom: 0, width: 130, height: 40, alignSelf: 'center' }} source={require('../assets/images/logo.jpg')} />
-    </SafeAreaView>
+      <Image style={{ top: -100, width: 130, height: 40, alignSelf: 'center', }} source={require('../assets/images/logo.jpg')} />
+    </KeyboardAvoidingView>
   )
 }
 
@@ -136,13 +176,13 @@ const styles = StyleSheet.create({
     backgroundColor: COLOR.background,
     borderWidth: 1,
     borderColor: COLOR.white,
-    height: '30%',
+    height: 340,
     width: '80%',
     alignSelf: 'center',
     borderRadius: 20,
 
     paddingVertical: 20,
-    top: -160,
+    top: -170,
     shadowColor: "#000000",
     shadowOffset: {
       width: 0,

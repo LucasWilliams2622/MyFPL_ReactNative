@@ -14,6 +14,7 @@ import DetailsNew from '../screens/DetailsNew';
 import NewsDetails from '../screens/NewsDetails';
 import ItemActivate from '../components/New/ItemActivate';
 import Study from '../screens/Study';
+import ChatTest from '../test/ChatTest'
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +39,8 @@ const StackProfile = () => {
     return (
         <Stack.Navigator initialRouteName="Profile" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Profile" component={Profile} />
+            <Stack.Screen name="ChatTest" component={ChatTest} />
+
 
         </Stack.Navigator>
     )
